@@ -1,0 +1,42 @@
+.my-cars {
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .controls .form-control {
+    width: 200px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .page-info {
+    margin: 0 10px;
+  }
+  .add-btn{
+    background-color: #ff6600;
+    padding-inline-start: 8px;
+    border: none;
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    float: right;
+  }
+  

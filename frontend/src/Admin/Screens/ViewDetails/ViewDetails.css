@@ -1,0 +1,38 @@
+/* ViewDetails.css */
+.view-details {
+    position: relative;
+  }
+  
+  .main-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .additional-images {
+    margin-top: 10px;
+  }
+  
+  .thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .thumbnail:hover {
+    opacity: 0.8;
+  }
+  
+  .details-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .col-md-6 {
+    margin-bottom: 20px;
+  }
+  

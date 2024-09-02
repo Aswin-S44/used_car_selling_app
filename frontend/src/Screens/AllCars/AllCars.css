@@ -1,0 +1,33 @@
+.cars-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    top: 60px;
+    position: relative;
+}
+.search-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 40px 10px 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: orange;
+    font-size: 1.2em;
+    pointer-events: none; /* Ensures the icon doesn’t capture clicks */
+  }
+  
