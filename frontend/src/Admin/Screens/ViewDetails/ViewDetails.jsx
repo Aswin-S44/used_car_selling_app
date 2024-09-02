@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "react-image-lightbox/style.css"; // import lightbox styles
-import Lightbox from "react-image-lightbox";
+// import "react-image-lightbox/style.css"; // import lightbox styles
+// import Lightbox from "react-image-lightbox";
 import "./ViewDetails.css";
 import axios from "axios";
 import { BACKEND_URL } from "../../../config/config";
@@ -110,34 +110,6 @@ function ViewDetails({ carId, onBack }) {
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div className="lightbox-box">
-          <Lightbox
-            mainSrc={car.additional_images[photoIndex]}
-            nextSrc={
-              car.additional_images[
-                (photoIndex + 1) % car.additional_images.length
-              ]
-            }
-            prevSrc={
-              car.additional_images[
-                (photoIndex + car.additional_images.length - 1) %
-                  car.additional_images.length
-              ]
-            }
-            onCloseRequest={closeLightbox}
-            onMovePrevRequest={() =>
-              setPhotoIndex(
-                (photoIndex + car.additional_images.length - 1) %
-                  car.additional_images.length
-              )
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % car.additional_images.length)
-            }
-          />
-        </div>
-      )}
     </div>
   );
 }
