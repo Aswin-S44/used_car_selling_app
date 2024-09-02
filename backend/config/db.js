@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const dbUrl =
-  "mongodb+srv://aswins:QVt4gYZyF2ATEjeh@cluster0.5pavcbi.mongodb.net/?retryWrites=true&w=majority";
+require("dotenv").config();
+const dbUrl = process.env.DATABASE_URL;
 
 mongoose.set("strictQuery", true);
 
