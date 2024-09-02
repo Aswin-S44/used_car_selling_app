@@ -17,6 +17,7 @@ const carSchema = new mongoose.Schema(
     image: { type: String, required: true },
     additional_images: [],
     sold: { type: Boolean, required: false },
+    price: { type: Number, required: true },
   },
   {
     timestamps: true,
