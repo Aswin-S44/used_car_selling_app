@@ -32,6 +32,11 @@ module.exports = {
       const limit = parseInt(query.limit) || 10;
       const skip = (page - 1) * limit;
 
+      if (query.priceRange) {
+        const [minPrice, maxPrice] = query.priceRange;
+        filter.price = { $gte: minPrice, $lte: maxPrice };
+      }
+
       let cars = await Cars.find(filter).skip(skip).limit(limit);
 
       return { success: true, data: cars, page, limit };

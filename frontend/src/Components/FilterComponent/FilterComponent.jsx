@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./FilterComponent.css"; // Ensure to include the CSS file
 
-function FilterComponent({ onFilterChange }) {
+function FilterComponent({ brands, years, onFilterChange }) {
   const [filters, setFilters] = useState({
     priceRange: [0, 100000],
     brand: "",
@@ -22,6 +22,7 @@ function FilterComponent({ onFilterChange }) {
   const handlePriceRangeChange = (index, value) => {
     const newPriceRange = [...filters.priceRange];
     newPriceRange[index] = value;
+    console.log('NEW PRICE RANGE---------', newPriceRange)
     setFilters((prevFilters) => {
       const updatedFilters = { ...prevFilters, priceRange: newPriceRange };
       onFilterChange(updatedFilters); // Notify parent of filter change
@@ -79,10 +80,10 @@ function FilterComponent({ onFilterChange }) {
           className="filter-select"
         >
           <option value="">All Brands</option>
-          <option value="Toyota">Toyota</option>
-          <option value="Ford">Ford</option>
-          <option value="Honda">Honda</option>
-          {/* Add more options */}
+          {brands?.length > 0 &&
+            brands.map((brand, index) => (
+              <option value={brand}>{brand}</option>
+            ))}
         </select>
       </div>
       <div className="filter-group">
@@ -95,10 +96,8 @@ function FilterComponent({ onFilterChange }) {
           className="filter-select"
         >
           <option value="">All Years</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          {/* Add more options */}
+          {years?.length > 0 &&
+            years.map((year, index) => <option value={year}>{year}</option>)}
         </select>
       </div>
       <div className="filter-group">
