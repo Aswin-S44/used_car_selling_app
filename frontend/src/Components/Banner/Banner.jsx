@@ -1,14 +1,14 @@
 import React from "react";
 import "./Banner.css";
+import { BANNER_IMAGE } from "../../constants/urls";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigation = useNavigate();
   return (
     <div className="banner-container">
-      <img
-        src="https://mclaren.scene7.com/is/image/mclaren/720S-Spider-Wallpapers-1-1920x1080:crop-16x9?wid=1600&hei=900"
-        alt="Car"
-        className="banner-image"
-      />
+      <img src={BANNER_IMAGE} alt="Car" className="w-100 banner-image" />
+      <div className="banner-overlay"></div>
       <div className="banner-content">
         <h1 className="banner-title">Discover the Ultimate Drive</h1>
         <p className="banner-subtitle">
@@ -17,7 +17,14 @@ function Banner() {
           power, designed to elevate every drive to a new level of
           sophistication.
         </p>
-        <button className="banner-button">Explore Now</button>
+        <button
+          onClick={() => {
+            navigation("/cars");
+          }}
+          className="banner-button"
+        >
+          Explore Now
+        </button>
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ function Header() {
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="header-logo">
         <a href="/" className="brand">
-          <img src="brand.png" className="brand-logo" />
+          <img src="/brand.png" className="brand-logo" />
         </a>
       </div>
       <nav className={`header-nav ${isOpen ? "open" : ""}`}>
