@@ -16,7 +16,6 @@ const StatsSection = () => {
         {stats.map((stat, index) => (
           <div className="stats-item" key={index}>
             <div className="stats-icon" style={{ color: stat.color }}>
-              {/* You can add icons here if needed */}
               <i
                 className={`fas fa-tachometer-alt`}
                 style={{ fontSize: "36px" }}
