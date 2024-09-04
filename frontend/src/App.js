@@ -7,6 +7,7 @@ import DetailsScreen from "./Screens/DetailsScreen/DetailsScreen";
 import AllCars from "./Screens/AllCars/AllCars";
 import Login from "./Admin/Auth/Login";
 import Dashboard from "./Admin/Dashboard/Dashboard";
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   // Use the useLocation hook to get the current location
@@ -22,7 +23,8 @@ function App() {
 
       <main>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomeScreen />} />
           <Route path="/details/:id" element={<DetailsScreen />} />
           <Route path="/cars" element={<AllCars />} />
           <Route path="/admin" element={<Login />} />

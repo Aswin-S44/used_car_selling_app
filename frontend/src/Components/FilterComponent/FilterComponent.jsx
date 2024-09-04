@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import "./FilterComponent.css"; // Ensure to include the CSS file
 
 function FilterComponent({ brands, years, onFilterChange }) {
-  const [filters, setFilters] = useState({
+  const initialFilters = {
     priceRange: [0, 100000],
     brand: "",
     year: "",
     fuelType: "",
     search: "",
-  });
+  };
+
+  const [filters, setFilters] = useState(initialFilters);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -22,12 +24,16 @@ function FilterComponent({ brands, years, onFilterChange }) {
   const handlePriceRangeChange = (index, value) => {
     const newPriceRange = [...filters.priceRange];
     newPriceRange[index] = value;
-    console.log('NEW PRICE RANGE---------', newPriceRange)
     setFilters((prevFilters) => {
       const updatedFilters = { ...prevFilters, priceRange: newPriceRange };
       onFilterChange(updatedFilters); // Notify parent of filter change
       return updatedFilters;
     });
+  };
+
+  const handleResetFilters = () => {
+    setFilters(initialFilters);
+    onFilterChange(initialFilters); // Notify parent of filter reset
   };
 
   return (
@@ -82,7 +88,9 @@ function FilterComponent({ brands, years, onFilterChange }) {
           <option value="">All Brands</option>
           {brands?.length > 0 &&
             brands.map((brand, index) => (
-              <option value={brand}>{brand}</option>
+              <option key={index} value={brand}>
+                {brand}
+              </option>
             ))}
         </select>
       </div>
@@ -97,7 +105,11 @@ function FilterComponent({ brands, years, onFilterChange }) {
         >
           <option value="">All Years</option>
           {years?.length > 0 &&
-            years.map((year, index) => <option value={year}>{year}</option>)}
+            years.map((year, index) => (
+              <option key={index} value={year}>
+                {year}
+              </option>
+            ))}
         </select>
       </div>
       <div className="filter-group">
@@ -116,6 +128,9 @@ function FilterComponent({ brands, years, onFilterChange }) {
           {/* Add more options */}
         </select>
       </div>
+      <button onClick={handleResetFilters} className="reset-button">
+        Reset Filters
+      </button>
     </div>
   );
 }
