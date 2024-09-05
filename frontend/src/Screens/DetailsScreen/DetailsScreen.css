@@ -1,104 +1,179 @@
-/* .car-details {
-  background-color: #ffffff;
-  color: #333333;
-  border-radius: 10px;
+/* Base styles for all screen sizes */
+.car-detail-wrapper {
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #f9f9f9;
 }
 
-.car-details .brand-name {
-  color: #142231;
-  font-size: 28px;
-  font-weight: 600;
+.car-detail-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.car-details .car-info, .car-details .info-2 {
-  color: #666666;
-  font-weight: 500;
-}
-
-.car-details h3 {
-  color: #FF6F61;
-  font-weight: 700;
-}
-
-.car-details h6 {
-  color: #0056b3;
-  font-weight: 400;
-}
-
-.car-details p {
-  color: #555555;
-  margin-top: 15px;
-  line-height: 1.6;
-}
-
-.car-details .text-success {
-  color: #28a745;
-}
-
-.car-details .text-danger {
-  color: #dc3545;
-}
-
-.car-details h6 svg {
-  color: #FF6F61;
-}
-
-
-.lightbox-row {
+.car-detail-content {
   display: flex;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px; /* Add space between items */
+}
+
+.car-detail-images {
+  flex: 1;
+  max-width: 100%;
+  padding-right: 0; /* Remove padding on smaller screens */
+}
+
+.car-detail-main-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.car-detail-thumbnails {
+  display: flex;
+  flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
+  gap: 10px; /* Add space between thumbnails */
   margin-top: 10px;
 }
 
-.lightbox-thumbnail {
-  width: 18%;
+.car-detail-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
   cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 5px;
-  margin-right: 10px;
-  transition: border-color 0.3s ease;
+  opacity: 0.8;
+  transition: opacity 0.3s, border 0.3s;
 }
 
-.lightbox-thumbnail:hover,
-.lightbox-thumbnail.active {
-  border-color: #ff6600;
+.car-detail-thumbnail.active {
+  border: 2px solid #e34120;
+  opacity: 1;
 }
 
-.main-image {
-  border-radius: 8px;
-  height: 400px;
-  object-fit: cover;
-}
-.info-2{
-  color: #222;
-  font-weight: 400;
+.car-detail-info {
+  flex: 1;
+  max-width: 100%;
+  padding-left: 0; /* Remove padding on smaller screens */
 }
 
-.text-success {
-  color: green;
+.car-detail-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
 }
 
-.text-danger {
-  color: red;
+.car-detail-subtitle {
+  font-size: 1.2em;
+  color: #666;
 }
 
-.details-btn{
-  background-color: #ff6600;
-  padding: 9px;
-  color: #ffffff;
-  width: 100%;
+.car-detail-meta {
+  font-size: 0.9em;
+  color: #777;
+  margin: 5px 0;
+}
+
+.car-detail-price {
+  font-size: 1.4em;
+  color: #e34120;
+  margin: 10px 0;
+}
+
+.car-detail-location {
+  font-size: 1em;
+  color: #888;
+}
+
+.car-detail-description {
+  margin-top: 15px;
+  color: #444;
+}
+
+.car-detail-button {
+  background-color: #e34120;
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.car-detail-button:hover {
+  background-color: #d4301d;
+}
+
+.related-cars-section {
+  margin-top: 30px;
+  padding: 20px;
+}
+
+/* Responsive styles for tablets and smaller devices */
 @media (max-width: 768px) {
-  .main-image{
-    width: 100%;
-    height: 200px;
+  .car-detail-content {
+    flex-direction: column; /* Stack images and info vertically */
   }
-  .car-card {
-    width: 100%;
+
+  .car-detail-images {
+    padding-right: 0;
   }
-} */
+
+  .car-detail-info {
+    padding-left: 0;
+  }
+
+  .car-detail-title {
+    font-size: 1.2em;
+  }
+
+  .car-detail-subtitle {
+    font-size: 1em;
+  }
+
+  .car-detail-price {
+    font-size: 1.2em;
+  }
+
+  .car-detail-location {
+    font-size: 0.9em;
+  }
+
+  .car-detail-button {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 480px) {
+  .car-detail-thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+
+  .car-detail-title {
+    font-size: 1em;
+  }
+
+  .car-detail-subtitle {
+    font-size: 0.9em;
+  }
+
+  .car-detail-meta {
+    font-size: 0.8em;
+  }
+
+  .car-detail-price {
+    font-size: 1em;
+  }
+
+  .car-detail-location {
+    font-size: 0.8em;
+  }
+
+  .car-detail-button {
+    padding: 8px 12px;
+    font-size: 0.8em;
+  }
+}

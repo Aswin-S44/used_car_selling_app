@@ -8,8 +8,13 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 import Spinner from "../../Components/Spinner/Spinner";
 import NotFound from "../../Components/NotFound/NotFound";
+import { useLocation } from "react-router-dom";
+import Header from "../../new_ui/components/Header/Header";
+import Footer from "../../Components/Footer/Footer";
 
 function AllCars() {
+  const location = useLocation();
+  const currentPath = location.pathname;
   const isMobile = useDeviceType();
 
   const [cars, setCars] = useState([]);
@@ -49,7 +54,7 @@ function AllCars() {
         console.log("API Response:", res.data); // Debugging
         if (res && res.data) {
           setCars(res.data.data);
-          console.log('RES------------', res?.data)
+          console.log("RES------------", res?.data);
           setTotalPages(Math.ceil(res.data.data.length / itemsPerPage)); // Calculate total pages
           const brands = [...new Set(res.data.data.map((car) => car.brand))];
           setBrands(brands);
@@ -95,40 +100,44 @@ function AllCars() {
   };
 
   return (
-    <div className="cars-list">
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-4">
-            {!isMobile ? (
-              <FilterComponent
-                brands={brands}
-                years={years}
-                onFilterChange={handleFilterChange}
-              />
-            ) : (
-              <MobileFilterComponent onFilterChange={handleFilterChange} />
-            )}
-          </div>
-          <div className="col-md-8">
-            <div className="search-container">
-              <input
-                type="search"
-                placeholder="Search by car name, brand, etc."
-                className="search-input"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <i
-                className="fa fa-search search-icon"
-                onClick={handleSearchSubmit}
-              ></i>
+    <div>
+      <Header />
+      <div className="cars-list">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3">
+              {!isMobile ? (
+                <FilterComponent
+                  brands={brands}
+                  years={years}
+                  onFilterChange={handleFilterChange}
+                />
+              ) : (
+                <MobileFilterComponent onFilterChange={handleFilterChange} />
+              )}
             </div>
-            {loading ? (
-              <Spinner />
-            ) : cars.length > 0 ? (
-              <>
-                <CarsList cars={cars} />
-                <div className="pagination">
+            <div className="col-md-9">
+              {currentPath == "/cars" && (
+                <div className="search-container">
+                  <input
+                    type="search"
+                    placeholder="Search by car name, brand, etc."
+                    className="search-input"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
+                  <i
+                    className="fa fa-search search-icon"
+                    onClick={handleSearchSubmit}
+                  ></i>
+                </div>
+              )}
+              {loading ? (
+                <Spinner />
+              ) : cars.length > 0 ? (
+                <>
+                  <CarsList title={'Popular Sales'} cars={cars} />
+                  {/* <div className="pagination">
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
@@ -144,13 +153,17 @@ function AllCars() {
                   >
                     Next
                   </button>
-                </div>
-              </>
-            ) : (
-              <NotFound />
-            )}
+                </div> */}
+                </>
+              ) : (
+                <NotFound />
+              )}
+            </div>
           </div>
         </div>
+      </div>
+      <div style={{ marginTop: "80px" }}>
+        <Footer />
       </div>
     </div>
   );

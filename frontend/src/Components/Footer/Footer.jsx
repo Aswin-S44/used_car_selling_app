@@ -1,69 +1,89 @@
 import React from "react";
-import "./Footer.css";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import "./Footer.css"; // Ensure to include this CSS file
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="footer-section">
-          <h4 className="footer-logo">CarZone</h4>
-          <p className="footer-description">
-            Your trusted partner in buying and selling used cars. Discover the
-            best deals and connect with reliable dealers.
-          </p>
+        <div className="footer-logo">
+          <h1>CarShop</h1>
+          <p>Your trusted partner in buying and selling cars.</p>
         </div>
-
-        <div className="footer-section">
-          <h5 className="footer-heading">Quick Links</h5>
-          <ul className="footer-links">
+        <div className="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
             <li>
-              <a href="/buy">Buy a Car</a>
+              <a href="/home">Home</a>
             </li>
             <li>
-              <a href="/sell">Sell a Car</a>
+              <a href="/cars">Cars</a>
             </li>
             <li>
-              <a href="/about">About Us</a>
+              <a href="/brands">Brands</a>
             </li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <a href="/about-us">About Us</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
             </li>
           </ul>
         </div>
-
-        <div className="footer-section">
-          <h5 className="footer-heading">Follow Us</h5>
-          <div className="footer-social-icons">
-            <a href="https://facebook.com" aria-label="Facebook">
-              <i className="fa fa-facebook-f"></i>
-            </a>
-            <a href="https://twitter.com" aria-label="Twitter">
-              <i className="fa fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com" aria-label="Instagram">
-              <i className="fa fa-instagram"></i>
-            </a>
-            <a href="https://linkedin.com" aria-label="LinkedIn">
-              <i className="fa fa-linkedin"></i>
-            </a>
-          </div>
+        <div className="footer-contact">
+          <h3>Contact Us</h3>
+          <p>Email: support@carshop.com</p>
+          <p>Phone: +123 456 7890</p>
+          <p>Address: 123 Car Street, Auto City, AC 12345</p>
         </div>
-
-        <div className="footer-section">
-          <h5 className="footer-heading">Contact Us</h5>
-          <p className="footer-contact">
-            123 CarStreet, Auto City, 56789 <br />
-            Email: info@carzone.com <br />
-            Phone: +1 234 567 890
-          </p>
+        <div className="footer-newsletter">
+          <h3>Subscribe to Our Newsletter</h3>
+          <form>
+            <input type="email" placeholder="Enter your email" />
+            <button type="submit">Subscribe</button>
+          </form>
         </div>
       </div>
-
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} CarZone. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} CarShop. All rights reserved.</p>
+        <div className="footer-socials">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTwitter />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedinIn />
+          </a>
+        </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

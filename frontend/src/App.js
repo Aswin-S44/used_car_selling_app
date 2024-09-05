@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       {/* Conditionally render Header only if the current route is not in the noHeaderRoutes array */}
-      {!noHeaderRoutes.includes(location.pathname) && <Header />}
+      {/* {!noHeaderRoutes.includes(location.pathname) && <Header />} */}
 
       <main>
         <Routes>
@@ -32,7 +32,7 @@ function App() {
         </Routes>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

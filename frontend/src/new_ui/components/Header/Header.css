@@ -1,0 +1,164 @@
+/* Base styles (desktop view) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: whitesmoke;
+  color: #e34120;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Logo section */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.logo-text {
+  margin: 0;
+  color: #e34120;
+}
+
+/* Search Bar (Visible on larger screens) */
+.search-bar {
+  display: flex;
+  flex: 1;
+  margin: 0 30px;
+  max-width: 500px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e34120;
+  border-radius: 50px 0 0 50px;
+  font-size: 1rem;
+}
+
+.search-button {
+  padding: 10px 18px;
+  background-color: #e34120;
+  border: none;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #234242;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #e34120;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a.active {
+  color: #fff;
+  background-color: #e34120;
+  padding: 8px;
+}
+
+.nav-links a:hover {
+  color: #111;
+}
+
+/* User Options */
+.user-options {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.user-icon,
+.cart-icon {
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.user-icon:hover,
+.cart-icon:hover {
+  color: #d1d1d1;
+}
+
+/* Mobile view: Search and hamburger icons */
+.mobile-icons {
+  display: none;
+}
+
+/* Sidebar (initially hidden) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: whitesmoke;
+  box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.mobile-nav-links a {
+  color: #e34120;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin: 15px 0;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+  color: #234242;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .search-bar {
+    display: none; /* Hide search bar on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hide navigation links on mobile */
+  }
+
+  .mobile-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-search-icon {
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  .hamburger-icon {
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+}
