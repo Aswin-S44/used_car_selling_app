@@ -101,7 +101,7 @@ function AllCars() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="cars-list">
         <div className="container">
           <div className="row">
@@ -136,7 +136,7 @@ function AllCars() {
                 <Spinner />
               ) : cars.length > 0 ? (
                 <>
-                  <CarsList title={'Popular Sales'} cars={cars} />
+                  <CarsList title={"Popular Sales"} cars={cars} />
                   {/* <div className="pagination">
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
@@ -162,9 +162,9 @@ function AllCars() {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "80px" }}>
+      {/* <div style={{ marginTop: "80px" }}>
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }

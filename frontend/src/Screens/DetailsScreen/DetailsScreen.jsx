@@ -92,7 +92,7 @@ function DetailsScreen() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="container-fluid">
         <div className="car-detail-wrapper">
           <div className="car-detail-card">
@@ -135,7 +135,10 @@ function DetailsScreen() {
                     <p className="car-detail-meta">
                       Insurance Claim:{" "}
                       {car?.claim ? (
-                        <CheckCircleIcon style={{color:'green'}} className="icon-success" />
+                        <CheckCircleIcon
+                          style={{ color: "green" }}
+                          className="icon-success"
+                        />
                       ) : (
                         <CancelIcon className="icon-error" />
                       )}
@@ -143,7 +146,10 @@ function DetailsScreen() {
                     <p className="car-detail-meta">
                       Major Accident:{" "}
                       {car?.major_accident ? (
-                        <CheckCircleIcon style={{color:'red'}} className="icon-success" />
+                        <CheckCircleIcon
+                          style={{ color: "red" }}
+                          className="icon-success"
+                        />
                       ) : (
                         <CancelIcon className="icon-error" />
                       )}

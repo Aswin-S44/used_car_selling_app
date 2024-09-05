@@ -10,12 +10,12 @@ import AllCars from "../Screens/AllCars/AllCars";
 import StatsCards from "../Components/StatsCards/StatsCards";
 import WhyChooseUs from "../new_ui/sections/WhyChooseUs.js/WhyChooseUs";
 import Footer from "../Components/Footer/Footer";
-import './LandingPage.css'
+import "./LandingPage.css";
 
 function LandingPage() {
   return (
     <div className="landing-page">
-      <Header />
+      {/* <Header /> */}
 
       <main>
         <div className="container">
@@ -31,7 +31,7 @@ function LandingPage() {
         </div>
         <WhyChooseUs />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

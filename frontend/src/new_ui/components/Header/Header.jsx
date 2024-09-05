@@ -29,11 +29,11 @@ function Header() {
 
         {/* Navigation links for larger screens */}
         <nav className="nav-links">
-          <a href="/home" className="active">
+          <a href="/" className="active">
             Home
           </a>
-          <a href="/cars">Cars</a>
-          <a href="/brands">Brands</a>
+          <a href="/cars">Explore cars</a>
+          {/* <a href="/brands">Brands</a> */}
           <a href="/about-us">About Us</a>
           <a href="/contact">Contact</a>
         </nav>
@@ -41,7 +41,9 @@ function Header() {
         {/* User options and cart icon */}
         <div className="user-options">
           {/* <FaUserCircle className="user-icon" /> */}
-          <FavoriteBorderIcon className="cart-icon" />
+          <a href="/my-favourites">
+            <FavoriteBorderIcon className="cart-icon" />
+          </a>
         </div>
 
         {/* Mobile search and hamburger icon */}

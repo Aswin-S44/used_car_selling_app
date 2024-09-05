@@ -1,0 +1,114 @@
+.new-contact-page {
+    font-family: 'Arial', sans-serif;
+    /* background-color: #f5f5f5; */
+    padding: 20px;
+  }
+  
+  .new-contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .new-contact-header h1 {
+    color: #e34120;
+    font-size: 2em;
+  }
+  
+  .new-contact-header p {
+    color: #666;
+    font-size: 1em;
+  }
+  
+  .new-contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .new-contact-form, .new-contact-info {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .new-contact-form h2, .new-contact-info h2 {
+    color: #e34120;
+    margin-bottom: 15px;
+  }
+  
+  .new-contact-form form input, .new-contact-form form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .new-contact-form form textarea {
+    resize: vertical;
+  }
+  
+  .new-submit-btn {
+    background-color: #e34120;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-submit-btn:hover {
+    background-color: #c72b18;
+  }
+  
+  .new-contact-info p {
+    margin: 8px 0;
+  }
+  
+  .new-contact-map {
+    margin-top: 20px;
+  }
+  
+  .new-contact-map h2 {
+    color: #e34120;
+    margin-bottom: 10px;
+  }
+  
+  .new-contact-map iframe {
+    border-radius: 8px;
+    width: 100%;
+    height: 250px;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .new-contact-content {
+      flex-direction: row;
+      gap: 30px;
+    }
+  
+    .new-contact-form, .new-contact-info {
+      flex: 1;
+    }
+  
+    .new-contact-header h1 {
+      font-size: 2.5em;
+    }
+  
+    .new-contact-header p {
+      font-size: 1.2em;
+    }
+  
+    .new-submit-btn {
+      padding: 12px 20px;
+      font-size: 1.1em;
+    }
+  
+    .new-contact-map iframe {
+      height: 350px;
+    }
+  }
+  

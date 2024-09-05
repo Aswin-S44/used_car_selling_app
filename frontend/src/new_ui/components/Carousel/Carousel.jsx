@@ -31,7 +31,7 @@ function Carousel() {
             <img
               src="https://t3.ftcdn.net/jpg/04/60/44/42/360_F_460444211_E7j3njYE705Rk1guKz9LKh58gFgiTybV.jpg"
               class="d-block w-100"
-              style={{ maxHeight: "400px" }}
+              style={{ maxHeight: "400px", borderRadius: "10px" }}
               alt="..."
             />
             <div class="carousel-caption d-none d-md-block">
@@ -45,7 +45,7 @@ function Carousel() {
             <img
               src="https://t3.ftcdn.net/jpg/05/09/64/26/360_F_509642664_iJnbo6Nbv8WDn29YkIXToqT0FAyyxgDD.jpg"
               class="d-block w-100"
-              style={{ maxHeight: "400px" }}
+              style={{ maxHeight: "400px", borderRadius: "10px" }}
               alt="..."
             />
             <div class="carousel-caption d-none d-md-block">
@@ -59,7 +59,7 @@ function Carousel() {
             <img
               src="https://t3.ftcdn.net/jpg/01/92/82/18/360_F_192821860_j9uFPdtqhorMYomb5OfMxfJOhoPONJXx.jpg"
               class="d-block w-100"
-              style={{ maxHeight: "400px" }}
+              style={{ maxHeight: "400px", borderRadius: "10px" }}
               alt="..."
             />
             <div class="carousel-caption d-none d-md-block">
