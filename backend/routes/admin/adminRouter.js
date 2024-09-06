@@ -13,7 +13,7 @@ adminRouter.get("/", (req, res) => {
 adminRouter.post("/add-car", async (req, res) => {
   let response = await addCar(req.body);
   res.send(response);
-});
+}); 
 
 adminRouter.get("/get-cars", async (req, res) => {
   let response = await getAllCars(req.query);

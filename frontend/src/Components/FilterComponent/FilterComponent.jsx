@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./FilterComponent.css"; // Ensure to include the CSS file
+import "./FilterComponent.css";
 
 function FilterComponent({ brands, years, onFilterChange }) {
   const initialFilters = {
-    priceRange: [0, 100000],
+    priceRange: "",
     brand: "",
     year: "",
     fuelType: "",
@@ -21,11 +21,9 @@ function FilterComponent({ brands, years, onFilterChange }) {
     });
   };
 
-  const handlePriceRangeChange = (index, value) => {
-    const newPriceRange = [...filters.priceRange];
-    newPriceRange[index] = value;
+  const handlePriceRangeChange = (range) => {
     setFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters, priceRange: newPriceRange };
+      const updatedFilters = { ...prevFilters, priceRange: range };
       onFilterChange(updatedFilters); // Notify parent of filter change
       return updatedFilters;
     });
@@ -35,6 +33,13 @@ function FilterComponent({ brands, years, onFilterChange }) {
     setFilters(initialFilters);
     onFilterChange(initialFilters); // Notify parent of filter reset
   };
+
+  const priceRanges = [
+    { label: "1 - 3 Lakh", value: "1-3" },
+    { label: "4 - 10 Lakh", value: "4-10" },
+    { label: "11 - 25 Lakh", value: "11-25" },
+    { label: "Above 25 Lakh", value: "25+" },
+  ];
 
   return (
     <div className="filter-component">
@@ -51,31 +56,24 @@ function FilterComponent({ brands, years, onFilterChange }) {
           className="filter-input"
         />
       </div>
+
       <div className="filter-group">
         <label>Price Range</label>
-        <div className="price-range">
-          <input
-            type="range"
-            min="0"
-            max="100000"
-            value={filters.priceRange[0]}
-            onChange={(e) => handlePriceRangeChange(0, e.target.value)}
-            className="range-slider"
-          />
-          <input
-            type="range"
-            min="0"
-            max="100000"
-            value={filters.priceRange[1]}
-            onChange={(e) => handlePriceRangeChange(1, e.target.value)}
-            className="range-slider"
-          />
-        </div>
-        <div className="price-values">
-          <span>${filters.priceRange[0]}</span> -{" "}
-          <span>${filters.priceRange[1]}</span>
+        <div className="price-chip-container">
+          {priceRanges.map((range) => (
+            <button
+              key={range.value}
+              className={`price-chip ${
+                filters.priceRange === range.value ? "active" : ""
+              }`}
+              onClick={() => handlePriceRangeChange(range.value)}
+            >
+              {range.label}
+            </button>
+          ))}
         </div>
       </div>
+
       <div className="filter-group">
         <label htmlFor="brand">Brand</label>
         <select
@@ -94,6 +92,7 @@ function FilterComponent({ brands, years, onFilterChange }) {
             ))}
         </select>
       </div>
+
       <div className="filter-group">
         <label htmlFor="year">Year</label>
         <select
@@ -112,6 +111,7 @@ function FilterComponent({ brands, years, onFilterChange }) {
             ))}
         </select>
       </div>
+
       <div className="filter-group">
         <label htmlFor="fuelType">Fuel Type</label>
         <select
@@ -125,9 +125,9 @@ function FilterComponent({ brands, years, onFilterChange }) {
           <option value="Petrol">Petrol</option>
           <option value="Diesel">Diesel</option>
           <option value="Electric">Electric</option>
-          {/* Add more options */}
         </select>
       </div>
+
       <button onClick={handleResetFilters} className="reset-button">
         Reset Filters
       </button>

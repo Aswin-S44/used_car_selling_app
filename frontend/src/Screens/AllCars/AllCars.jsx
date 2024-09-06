@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./AllCars.css";
 import CarsList from "../../Sections/CarsList/CarsList";
 import FilterComponent from "../../Components/FilterComponent/FilterComponent";
@@ -24,7 +24,8 @@ function AllCars() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 6; // Number of items to display per page
+  const [hasMore, setHasMore] = useState(true); // Track if more data is available
+  const itemsPerPage = 6;
 
   const [filters, setFilters] = useState({
     car_name: null,
@@ -40,7 +41,7 @@ function AllCars() {
     claim: null,
     sold: null,
     page: 1,
-    limit: itemsPerPage, // Number of items to display per page
+    limit: itemsPerPage,
     search: "",
   });
 
@@ -51,15 +52,21 @@ function AllCars() {
         const res = await axios.get(`${BACKEND_URL}/admin/get-cars`, {
           params: filters,
         });
-        console.log("API Response:", res.data); // Debugging
+        console.log("API Response:", res.data);
         if (res && res.data) {
-          setCars(res.data.data);
-          console.log("RES------------", res?.data);
-          setTotalPages(Math.ceil(res.data.data.length / itemsPerPage)); // Calculate total pages
-          const brands = [...new Set(res.data.data.map((car) => car.brand))];
-          setBrands(brands);
-          const years = [...new Set(res.data.data.map((car) => car.year))];
-          setYears(years);
+          const newCars = res?.data?.data;
+
+          if (newCars) {
+            setCars((prevCars) => [...prevCars, ...newCars]); // Append new cars to the existing ones
+            const totalItems = res.data.totalCars;
+            setTotalPages(Math.ceil(totalItems / itemsPerPage));
+            setHasMore(newCars.length > 0 && cars.length < totalItems); // Determine if more data is available
+
+            const brands = [...new Set(res.data.data.map((car) => car.brand))];
+            setBrands(brands);
+            const years = [...new Set(res.data.data.map((car) => car.year))];
+            setYears(years);
+          }
         }
       } catch (error) {
         console.error("Error fetching cars:", error);
@@ -68,13 +75,14 @@ function AllCars() {
       }
     };
     fetchCars();
-  }, [filters]); // Re-fetch cars when filters change
+  }, [filters]);
 
   const handleFilterChange = (updatedFilters) => {
+    setCars([]); // Reset the car list when filters change
     setFilters((prevFilters) => ({
       ...prevFilters,
       ...updatedFilters,
-      page: 1, // Reset to the first page on filter change
+      page: 1,
     }));
   };
 
@@ -83,25 +91,41 @@ function AllCars() {
   };
 
   const handleSearchSubmit = () => {
+    setCars([]); // Reset the car list on new search
     setFilters((prevFilters) => ({
       ...prevFilters,
       search: searchQuery,
-      page: 1, // Reset to the first page on search
+      page: 1,
     }));
   };
 
-  const handlePageChange = (newPage) => {
-    if (newPage < 1 || newPage > totalPages) return; // Validate page range
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      page: newPage,
-    }));
-    setCurrentPage(newPage);
+  const loadMoreCars = () => {
+    if (hasMore) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        page: prevFilters.page + 1,
+      }));
+    }
   };
+
+  // Scroll event listener to load more cars when the user scrolls near the bottom
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
+      !loading &&
+      hasMore
+    ) {
+      loadMoreCars();
+    }
+  }, [loading, hasMore]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   return (
     <div>
-      {/* <Header /> */}
       <div className="cars-list">
         <div className="container">
           <div className="row">
@@ -117,7 +141,7 @@ function AllCars() {
               )}
             </div>
             <div className="col-md-9">
-              {currentPath == "/cars" && (
+              {currentPath === "/cars" && (
                 <div className="search-container">
                   <input
                     type="search"
@@ -135,26 +159,7 @@ function AllCars() {
               {loading ? (
                 <Spinner />
               ) : cars.length > 0 ? (
-                <>
-                  <CarsList title={"Popular Sales"} cars={cars} />
-                  {/* <div className="pagination">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    Previous
-                  </button>
-                  <span>
-                    Page {currentPage} of {totalPages}
-                  </span>
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    Next
-                  </button>
-                </div> */}
-                </>
+                <CarsList title={"Popular Sales"} cars={cars} />
               ) : (
                 <NotFound />
               )}
@@ -162,9 +167,6 @@ function AllCars() {
           </div>
         </div>
       </div>
-      {/* <div style={{ marginTop: "80px" }}>
-        <Footer />
-      </div> */}
     </div>
   );
 }

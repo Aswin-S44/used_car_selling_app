@@ -2,29 +2,18 @@ import React from "react";
 
 function Spinner() {
   return (
-    <div className="text-center">
-      <div class="spinner-grow text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-danger" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-warning" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-info" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-light" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-dark" role="status">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        class="spinner-border mt-5"
+        role="status"
+        style={{ color: "orange" }}
+      >
         <span class="sr-only">Loading...</span>
       </div>
     </div>
