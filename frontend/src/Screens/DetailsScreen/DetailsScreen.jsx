@@ -99,78 +99,107 @@ function DetailsScreen() {
             {loading ? (
               <Spinner />
             ) : (
-              <>
+              <div className="container">
                 <div className="car-detail-content">
-                  <div className="car-detail-images">
-                    <img
-                      src={mainImage}
-                      className="car-detail-main-image"
-                      alt="Main Car"
-                    />
-                    <div className="car-detail-thumbnails">
-                      {car?.additional_images?.map((image, index) => (
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="car-detail-images">
                         <img
-                          key={index}
-                          src={image}
-                          className={`car-detail-thumbnail ${
-                            mainImage === image ? "active" : ""
-                          }`}
-                          onClick={() => setMainImage(image)}
-                          alt={`Thumbnail ${index + 1}`}
+                          src={mainImage}
+                          className="car-detail-main-image"
+                          alt="Main Car"
                         />
-                      ))}
+                        <div className="car-detail-thumbnails">
+                          {car?.additional_images?.map((image, index) => (
+                            <img
+                              key={index}
+                              src={image}
+                              className={`car-detail-thumbnail ${
+                                mainImage === image ? "active" : ""
+                              }`}
+                              onClick={() => setMainImage(image)}
+                              alt={`Thumbnail ${index + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="container">
+                        <div className="car-detail-info">
+                          <h2 className="car-detail-title">{car?.car_name}</h2>
+                          <h4 className="car-detail-subtitle">
+                            {car?.brand} | {car?.model} | {car?.year}
+                          </h4>
+                          <p className="car-detail-meta">
+                            {car?.kilometer} km | {car?.variant} | {car?.owner}{" "}
+                            Owner
+                          </p>
+
+                          <h3 className="car-detail-price">
+                            ₹{(car?.price / 100000).toFixed(1)} Lakh
+                          </h3>
+                          <p className="car-detail-location">
+                            <FmdGoodIcon /> Delhi
+                          </p>
+                          <p className="car-detail-description">{car?.about}</p>
+                          <button
+                            className="car-detail-button mt-3"
+                            onClick={() => setOpen(true)}
+                          >
+                            Get Dealer Details
+                          </button>
+                          <UserModal open={open} setOpen={setOpen} carId={id} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="car-detail-info">
-                    <h2 className="car-detail-title">{car?.car_name}</h2>
-                    <h4 className="car-detail-subtitle">
-                      {car?.brand} | {car?.model} | {car?.year}
-                    </h4>
-                    <p className="car-detail-meta">
-                      {car?.kilometer} km | {car?.variant} | {car?.owner} Owner
-                    </p>
-                    <p className="car-detail-meta">
-                      Loan Available: {car?.loan_available ? "Yes" : "No"}
-                    </p>
-                    <p className="car-detail-meta">
-                      Insurance Claim:{" "}
-                      {car?.claim ? (
-                        <CheckCircleIcon
-                          style={{ color: "green" }}
-                          className="icon-success"
-                        />
-                      ) : (
-                        <CancelIcon className="icon-error" />
-                      )}
-                    </p>
-                    <p className="car-detail-meta">
-                      Major Accident:{" "}
-                      {car?.major_accident ? (
-                        <CheckCircleIcon
-                          style={{ color: "red" }}
-                          className="icon-success"
-                        />
-                      ) : (
-                        <CancelIcon className="icon-error" />
-                      )}
-                    </p>
-                    <h3 className="car-detail-price">
-                      ₹{(car?.price / 100000).toFixed(1)} Lakh
-                    </h3>
-                    <p className="car-detail-location">
-                      <FmdGoodIcon /> Delhi
-                    </p>
-                    <p className="car-detail-description">{car?.about}</p>
-                    <button
-                      className="car-detail-button"
-                      onClick={() => setOpen(true)}
-                    >
-                      Get Dealer Details
-                    </button>
-                    <UserModal open={open} setOpen={setOpen} carId={id} />
+
+                  <div className="extra-details p-3 w-100">
+                    <h4 className="more-info-text">More Information</h4>
+                    <div className="row mt-3">
+                      <div className="col-md-6">
+                        <div className="specs">
+                          <i className="fa fa-flag-checkered claim-icon"></i>
+                          Claim: <span>{car.claim ? "Yes" : "No"}</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="specs">
+                          <i className="fa fa-money-bill-wave loan-icon"></i>
+                          Loan Available:{" "}
+                          <span>{car.loan_available ? "Yes" : "No"}</span>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="specs">
+                          <i className="fa fa-exclamation-triangle accident-icon"></i>
+                          {"  "}Major Accident:{" "}
+                          <span>{car.major_accident ? "Yes" : "No"}</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="specs">
+                          <i className="fa fa-paint-brush color-icon"></i>
+                          Color:{" "}
+                          <span>{car.color ? car.color : "Unavailable"}</span>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="specs">
+                          <i className="fa fa-gas-pump fuel-icon"></i>
+                          Fuel Type:{" "}
+                          <span>
+                            {car.fuelType ? car.fuelType : "Unavailable"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
           <div className="related-cars-section">
@@ -179,7 +208,6 @@ function DetailsScreen() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
