@@ -161,7 +161,7 @@ function DetailsScreen() {
                       <div className="col-md-6">
                         <div className="specs">
                           <i className="fa fa-flag-checkered claim-icon"></i>
-                          Claim: <span>{car.claim ? "Yes" : "No"}</span>
+                          Insuarance Claim: <span>{car.claim ? "Yes" : "No"}</span>
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -183,7 +183,8 @@ function DetailsScreen() {
                         <div className="specs">
                           <i className="fa fa-paint-brush color-icon"></i>
                           Color:{" "}
-                          <span>{car.color ? car.color : "Unavailable"}</span>
+                          {/* <span>{car.color ? car.color : "Unavailable"}</span> */}
+                          <span>Red</span>
                         </div>
                       </div>
 
