@@ -138,7 +138,7 @@ function AllCars() {
               )}
             </div>
             <div className="col-md-9">
-              {currentPath === "/cars" && (
+              {/* {currentPath === "/cars" && (
                 <div className="search-container">
                   <input
                     type="search"
@@ -147,18 +147,12 @@ function AllCars() {
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
-                  {/* <i
-                    className="fa fa-search search-icon"
-                    onClick={handleSearchSubmit}
-                    role="button"
-                    tabIndex="0"
-                    style={{ cursor: "pointer" }}
-                  ></i> */}
+                  
                   <button onClick={handleSearchSubmit}>
                     <span style={{fontSize:'15px'}}>Search</span>
                   </button>
                 </div>
-              )}
+              )} */}
               {loading ? (
                 <Spinner />
               ) : cars.length > 0 ? (

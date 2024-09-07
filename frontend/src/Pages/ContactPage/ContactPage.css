@@ -29,12 +29,13 @@
     background: #fff;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   }
   
   .new-contact-form h2, .new-contact-info h2 {
     color: #e34120;
     margin-bottom: 15px;
+    font-size: 21px;
   }
   
   .new-contact-form form input, .new-contact-form form textarea {

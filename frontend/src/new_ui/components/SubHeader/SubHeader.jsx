@@ -32,26 +32,6 @@ function SubHeader() {
               </small>
             </div>
           </div>
-          <div class="col-lg-5 px-5 text-end">
-            <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-              <small class="fa fa-phone-alt text-primary me-2"></small>
-              <small style={{ fontWeight: "bold", color: "#444" }}>
-                <PhoneIcon />
-                +91-9898112121
-              </small>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center">
-              <a class="btn btn-sm-square bg-white text-primary me-1" href="">
-                <FacebookIcon style={{ color: "blue" }} />
-              </a>
-              <a class="btn btn-sm-square bg-white text-primary me-1" href="">
-                <InstagramIcon style={{ color: "#d62976" }} />
-              </a>
-              <a class="btn btn-sm-square bg-white text-primary me-1" href="">
-                <LinkedInIcon />
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

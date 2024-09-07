@@ -11,6 +11,8 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import UserModal from "../../Components/Modal/Modal";
 import Header from "../../new_ui/components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import CustomerReviews from "../../Sections/CustomerReviews/CustomerReviews";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 function DetailsScreen() {
   const [car, setCar] = useState({});
@@ -126,6 +128,9 @@ function DetailsScreen() {
                     </div>
                     <div className="col-md-6">
                       <div className="container">
+                        <div style={{ float: "right" }}>
+                          <BookmarkBorderIcon />
+                        </div>
                         <div className="car-detail-info">
                           <h2 className="car-detail-title">{car?.car_name}</h2>
                           <h4 className="car-detail-subtitle">
@@ -139,6 +144,9 @@ function DetailsScreen() {
                           <h3 className="car-detail-price">
                             ₹{(car?.price / 100000).toFixed(1)} Lakh
                           </h3>
+                          <h5 style={{ color: "green", fontSize: "17px" }}>
+                            Negotiable
+                          </h5>
                           <p className="car-detail-location">
                             <FmdGoodIcon /> Delhi
                           </p>
@@ -152,61 +160,74 @@ function DetailsScreen() {
                           <UserModal open={open} setOpen={setOpen} carId={id} />
                         </div>
                       </div>
-                    </div>
-                  </div>
+                      <div className="container-fluid">
+                        <div className="extra-details mt-5 p-3 w-100">
+                          <h4 className="more-info-text">More Information</h4>
+                          <div className="row mt-3">
+                            <div className="col-md-6">
+                              <div className="specs">
+                                <i className="fa fa-flag-checkered claim-icon"></i>
+                                Insuarance Claim:{" "}
+                                <span>{car.claim ? "Yes" : "No"}</span>
+                              </div>
+                            </div>
+                            <div className="col-md-6">
+                              <div className="specs">
+                                <i className="fa fa-money-bill-wave loan-icon"></i>
+                                Loan Available:{" "}
+                                <span>{car.loan_available ? "Yes" : "No"}</span>
+                              </div>
+                            </div>
 
-                  <div className="extra-details p-3 w-100">
-                    <h4 className="more-info-text">More Information</h4>
-                    <div className="row mt-3">
-                      <div className="col-md-6">
-                        <div className="specs">
-                          <i className="fa fa-flag-checkered claim-icon"></i>
-                          Insuarance Claim: <span>{car.claim ? "Yes" : "No"}</span>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="specs">
-                          <i className="fa fa-money-bill-wave loan-icon"></i>
-                          Loan Available:{" "}
-                          <span>{car.loan_available ? "Yes" : "No"}</span>
-                        </div>
-                      </div>
+                            <div className="col-md-6">
+                              <div className="specs">
+                                <i className="fa fa-exclamation-triangle accident-icon"></i>
+                                {"  "}Major Accident:{" "}
+                                <span>{car.major_accident ? "Yes" : "No"}</span>
+                              </div>
+                            </div>
+                            <div className="col-md-6">
+                              <div className="specs">
+                                <i className="fa fa-paint-brush color-icon"></i>
+                                Color:{" "}
+                                {/* <span>{car.color ? car.color : "Unavailable"}</span> */}
+                                <span>Red</span>
+                              </div>
+                            </div>
 
-                      <div className="col-md-6">
-                        <div className="specs">
-                          <i className="fa fa-exclamation-triangle accident-icon"></i>
-                          {"  "}Major Accident:{" "}
-                          <span>{car.major_accident ? "Yes" : "No"}</span>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="specs">
-                          <i className="fa fa-paint-brush color-icon"></i>
-                          Color:{" "}
-                          {/* <span>{car.color ? car.color : "Unavailable"}</span> */}
-                          <span>Red</span>
-                        </div>
-                      </div>
-
-                      <div className="col-md-6">
-                        <div className="specs">
-                          <i className="fa fa-gas-pump fuel-icon"></i>
-                          Fuel Type:{" "}
-                          <span>
-                            {car.fuelType ? car.fuelType : "Unavailable"}
-                          </span>
+                            <div className="col-md-6">
+                              <div className="specs">
+                                <i className="fa fa-gas-pump fuel-icon"></i>
+                                Fuel Type:{" "}
+                                <span>
+                                  {car.fuelType ? car.fuelType : "Unavailable"}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="mt-4">
+                      <h6>Reviews (11)</h6>
+                      <div className="mt-3">
+                        <CustomerReviews />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6"></div>
+                </div>
               </div>
             )}
           </div>
-          <div className="related-cars-section">
-            <hr />
-            <CarsList title={"Related Cars"} cars={cars} />
-          </div>
+        </div>
+        <div className="related-cars-section">
+          <hr />
+          <CarsList title={"Related Cars"} cars={cars} />
         </div>
       </div>
     </>

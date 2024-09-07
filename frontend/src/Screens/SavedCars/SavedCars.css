@@ -1,0 +1,87 @@
+/* Page Layout */
+.saved-cars-list-page {
+    padding: 20px;
+    /* background-color: #f5f5f5; */
+    min-height: 100vh;
+    top: -25px;
+    position: relative;
+  }
+  
+  .saved-cars-list-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  /* List Layout */
+  .saved-cars-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .saved-car-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .saved-car-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Car Image */
+  .saved-car-image {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Car Details */
+  .saved-car-details {
+    flex-grow: 1;
+  }
+  
+  .saved-car-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .saved-car-info {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .saved-car-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-bottom: 10px;
+  }
+  
+  /* Remove Button */
+  .saved-car-remove-btn {
+    background-color: #ff6f61;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saved-car-remove-btn:hover {
+    background-color: #e65c50;
+  }
+  

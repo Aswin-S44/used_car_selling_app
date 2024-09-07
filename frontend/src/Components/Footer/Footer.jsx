@@ -5,6 +5,8 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import TwitterIcon from "@mui/icons-material/Twitter";
+
 import "./Footer.css"; // Ensure to include this CSS file
 
 const Footer = () => {
@@ -42,11 +44,11 @@ const Footer = () => {
           <p>Address: 123 Car Street, Auto City, AC 12345</p>
         </div>
         <div className="footer-newsletter">
-          <h3>Subscribe to Our Newsletter</h3>
+          {/* <h3>Subscribe to Our Newsletter</h3>
           <form>
             <input type="email" placeholder="Enter your email" />
             <button type="submit">Subscribe</button>
-          </form>
+          </form> */}
         </div>
       </div>
       <div className="footer-bottom">
@@ -78,7 +80,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedinIn />
+            <TwitterIcon />
           </a>
         </div>
       </div>

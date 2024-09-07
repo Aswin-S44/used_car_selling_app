@@ -11,6 +11,8 @@ import StatsCards from "../Components/StatsCards/StatsCards";
 import WhyChooseUs from "../new_ui/sections/WhyChooseUs.js/WhyChooseUs";
 import Footer from "../Components/Footer/Footer";
 import "./LandingPage.css";
+import Testimonial from "../Components/Testimonial/Testimonial";
+import AboutUs from "../new_ui/sections/AboutUs/AboutUs";
 
 function LandingPage() {
   return (
@@ -18,18 +20,20 @@ function LandingPage() {
       {/* <Header /> */}
 
       <main>
-        <div className="container">
+        <div className="container-fluid">
           {/* <ImageCarousel /> */}
           <Carousel />
           {/* <ListCars /> */}
 
           <div className="row mt-0">
             <StatsCards />
+            <AboutUs />
             <hr />
             <AllCars />
           </div>
         </div>
         <WhyChooseUs />
+        <Testimonial />
       </main>
       {/* <Footer /> */}
     </div>

@@ -31,6 +31,9 @@ const WhyChooseUs = () => {
   return (
     <div className="why-choose-us mt-5">
       <h2 className="section-title">Why Choose Us?</h2>
+      <p className="section-subtitle">
+        We provide unmatched services that cater to your car buying experience.
+      </p>
       <div className="reasons-container">
         {reasons.map((reason, index) => (
           <div key={index} className="reason-card">

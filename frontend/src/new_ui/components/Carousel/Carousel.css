@@ -1,3 +1,7 @@
+.banner-div{
+  top: -19px;
+  position: relative;
+}
 .carousel-container {
     width: 100%;
     margin: 0 auto;

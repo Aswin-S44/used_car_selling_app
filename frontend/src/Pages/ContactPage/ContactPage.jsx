@@ -52,21 +52,21 @@ const ContactPage = () => {
           <div className="new-contact-info">
             <h2>Contact Information</h2>
             <div className="new-contact-card">
-              <FaPhoneAlt className="new-contact-icon" />
               <p>
-                <strong>Phone:</strong> +1 234 567 890
+                <FaPhoneAlt className="new-contact-icon" />
+                {"  "} +1 234 567 890
               </p>
             </div>
             <div className="new-contact-card">
-              <FaEnvelope className="new-contact-icon" />
               <p>
-                <strong>Email:</strong> support@example.com
+                <FaEnvelope className="new-contact-icon" /> {"  "}{" "}
+                support@example.com
               </p>
             </div>
             <div className="new-contact-card">
-              <FaMapMarkerAlt className="new-contact-icon" />
               <p>
-                <strong>Address:</strong> 1234 Car St, Auto City, AC 12345
+                <FaMapMarkerAlt className="new-contact-icon" />
+                {"  "} 1234 Car St, Auto City, AC 12345
               </p>
             </div>
           </div>
