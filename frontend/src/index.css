@@ -13,6 +13,10 @@ body {
   background-color: whitesmoke;
 }
 
+a{
+  text-decoration: none;
+}
+
 .about-paragraph {
   color: #666;
 }

@@ -126,4 +126,7 @@
   .car-card {
     width: 100%;
   }
+  .car-image{
+    height: 100%;
+  }
 }

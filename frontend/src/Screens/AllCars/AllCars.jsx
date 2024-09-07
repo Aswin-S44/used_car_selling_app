@@ -11,6 +11,7 @@ import NotFound from "../../Components/NotFound/NotFound";
 import { useLocation } from "react-router-dom";
 import Header from "../../new_ui/components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import SearchIcon from "@mui/icons-material/Search";
 
 function AllCars() {
   const location = useLocation();
@@ -24,7 +25,7 @@ function AllCars() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [hasMore, setHasMore] = useState(true); // Track if more data is available
+  const [hasMore, setHasMore] = useState(true);
   const itemsPerPage = 6;
 
   const [filters, setFilters] = useState({
@@ -52,20 +53,15 @@ function AllCars() {
         const res = await axios.get(`${BACKEND_URL}/admin/get-cars`, {
           params: filters,
         });
-        console.log("API Response:", res.data);
         if (res && res.data) {
           const newCars = res?.data?.data;
-
           if (newCars) {
-            setCars((prevCars) => [...prevCars, ...newCars]); // Append new cars to the existing ones
+            setCars((prevCars) => [...prevCars, ...newCars]);
             const totalItems = res.data.totalCars;
             setTotalPages(Math.ceil(totalItems / itemsPerPage));
-            setHasMore(newCars.length > 0 && cars.length < totalItems); // Determine if more data is available
-
-            const brands = [...new Set(res.data.data.map((car) => car.brand))];
-            setBrands(brands);
-            const years = [...new Set(res.data.data.map((car) => car.year))];
-            setYears(years);
+            setHasMore(newCars.length > 0 && cars.length < totalItems);
+            setBrands([...new Set(res.data.data.map((car) => car.brand))]);
+            setYears([...new Set(res.data.data.map((car) => car.year))]);
           }
         }
       } catch (error) {
@@ -78,7 +74,7 @@ function AllCars() {
   }, [filters]);
 
   const handleFilterChange = (updatedFilters) => {
-    setCars([]); // Reset the car list when filters change
+    setCars([]);
     setFilters((prevFilters) => ({
       ...prevFilters,
       ...updatedFilters,
@@ -87,11 +83,13 @@ function AllCars() {
   };
 
   const handleSearchChange = (e) => {
+    console.log("search avlue : ", e.target.value);
     setSearchQuery(e.target.value);
   };
 
   const handleSearchSubmit = () => {
-    setCars([]); // Reset the car list on new search
+    console.log("submit called-------");
+    setCars([]);
     setFilters((prevFilters) => ({
       ...prevFilters,
       search: searchQuery,
@@ -108,7 +106,6 @@ function AllCars() {
     }
   };
 
-  // Scroll event listener to load more cars when the user scrolls near the bottom
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
@@ -150,10 +147,16 @@ function AllCars() {
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
-                  <i
+                  {/* <i
                     className="fa fa-search search-icon"
                     onClick={handleSearchSubmit}
-                  ></i>
+                    role="button"
+                    tabIndex="0"
+                    style={{ cursor: "pointer" }}
+                  ></i> */}
+                  <button onClick={handleSearchSubmit}>
+                    <span style={{fontSize:'15px'}}>Search</span>
+                  </button>
                 </div>
               )}
               {loading ? (
