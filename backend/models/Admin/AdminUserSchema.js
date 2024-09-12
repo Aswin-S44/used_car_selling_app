@@ -8,6 +8,7 @@ const adminSchema = new mongoose.Schema(
     deactivated: { type: Boolean, default: false },
     password: { type: String, required: true },
     enable2fa: { type: Boolean, default: true },
+    securityCode: { type: String },
   },
   {
     timestamps: true,
