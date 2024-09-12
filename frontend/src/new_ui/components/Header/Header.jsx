@@ -53,7 +53,7 @@ function Header() {
   };
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen); 
   };
 
   return (
@@ -127,9 +127,8 @@ function Header() {
       {/* Sidebar for mobile view */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <nav className="mobile-nav-links">
-          <a href="/home">Home</a>
-          <a href="/cars">Cars</a>
-          <a href="/brands">Brands</a>
+          <a href="/">Home</a>
+          <a href="/cars">Explore Cars</a>
           <a href="/about-us">About Us</a>
           <a href="/contact">Contact</a>
         </nav>

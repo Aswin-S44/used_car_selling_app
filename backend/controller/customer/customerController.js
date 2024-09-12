@@ -1,10 +1,12 @@
 const { successResponse } = require("../../constants/response");
 const Enquiry = require("../../models/Enquiry/EnquiryModel");
+const io = require("../../server");
 
 module.exports = {
   sendEnquiry: async (data) => {
     try {
       let res = await Enquiry.create(data);
+      io.emit("new-enquiry", res);
       res.send(successResponse);
     } catch (error) {
       return error;

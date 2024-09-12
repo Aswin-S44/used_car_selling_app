@@ -145,8 +145,9 @@ a.active {
   width: 250px;
   height: 100%;
   background-color: whitesmoke;
-  box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px 0 6px rgba(228, 9, 9, 0.1);
   transition: right 0.3s ease;
+  z-index: 999;
 }
 
 .sidebar.open {
@@ -160,7 +161,7 @@ a.active {
 }
 
 .mobile-nav-links a {
-  color: #e34120;
+  color: #fff;
   text-decoration: none;
   font-size: 1.2rem;
   margin: 15px 0;
