@@ -12,6 +12,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET || "Something secret";
 const mongoose = require("mongoose");
 const Enquiry = require("../../models/Enquiry/EnquiryModel");
+const Stats = require("../../models/Admin/StatMode");
 
 module.exports = {
   addCar: async (data) => {
@@ -236,6 +237,76 @@ module.exports = {
       return successResponse;
     } catch (error) {
       return error;
+    }
+  },
+  getStatus: async () => {
+    try {
+      let stat = await Stats.findOne({});
+
+      let carCount = await Cars.countDocuments({});
+      let salesCount = 0;
+      let dealerCount = await Dealer.countDocuments({});
+      let status = {
+        total_earnings: 0,
+        total_sales: 0,
+        total_cars: carCount,
+        total_dealers: dealerCount,
+      };
+
+      successResponse.data = status;
+      return successResponse;
+    } catch (error) {
+      return error;
+    }
+  },
+  getEnquiryDetails: async (enquiryId) => {
+    try {
+      const enquiry = await Enquiry.findOne({ _id: enquiryId });
+      if (!enquiry) {
+        return errorResponse;
+      }
+      let respObj = {};
+      const carId = enquiry.carId;
+
+      const car = await Cars.findOne({ _id: carId, sold: false });
+      if (!car) {
+        respObj.car_details = null;
+      }
+
+      (respObj.enquiry_details = enquiry),
+        (respObj.car_details = car),
+        (successResponse.data = respObj);
+      return successResponse;
+    } catch (error) {
+      return error;
+    }
+  },
+  deleteCar: async (id) => {
+    try {
+      await Cars.deleteOne({ _id: id });
+      return true;
+    } catch (error) {
+      return error;
+    }
+  },
+  editCar: async (id, data) => {
+    try {
+      const car = await Cars.findOne({ _id: id });
+
+      if (!car) {
+        return { success: false, message: "Car not found" };
+      }
+      console.log("data---------------", data);
+      let status = await Cars.updateOne({ _id: id }, { data });
+      const new_car = await Cars.findOne({ _id: id });
+      console.log("NEW CAR-------------", new_car);
+      return { success: true, message: "Car updated successfully" };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred",
+        error: error.message,
+      };
     }
   },
 };

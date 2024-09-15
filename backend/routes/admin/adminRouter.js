@@ -15,6 +15,10 @@ const {
   deleteAdminUser,
   getAllEnquiries,
   updateEnquiry,
+  getStatus,
+  getEnquiryDetails,
+  deleteCar,
+  editCar,
 } = require("../../controller/admin/adminRouter");
 const adminRouter = express.Router();
 const multer = require("multer");
@@ -162,6 +166,26 @@ adminRouter.put("/update-enquiry/:id", async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: "Failed to update enquiry" });
   }
+});
+
+adminRouter.get("/get-status", async (req, res) => {
+  let response = await getStatus();
+  res.send(response);
+});
+
+adminRouter.get("/get-enquiry/:id", async (req, res) => {
+  let response = await getEnquiryDetails(req.params.id);
+  res.send(response);
+});
+
+adminRouter.delete("/car/:id", async (req, res) => {
+  let response = await deleteCar(req.params.id);
+  res.send(response);
+});
+
+adminRouter.put("/edit-car/:id", async (req, res) => {
+  let response = await editCar(req.params.id, req.body.data);
+  res.send(response);
 });
 
 module.exports = adminRouter;

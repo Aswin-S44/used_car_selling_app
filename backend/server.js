@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
 
 app.post("/enquiry", async (req, res) => {
   try {
-    let result = await Enquiry.create(req.body)
+    let result = await Enquiry.create(req.body);
 
     io.emit("new-enquiry", result);
     res.send(successResponse);
