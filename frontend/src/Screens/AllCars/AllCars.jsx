@@ -8,7 +8,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 import Spinner from "../../Components/Spinner/Spinner";
 import NotFound from "../../Components/NotFound/NotFound";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Header from "../../new_ui/components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import SearchIcon from "@mui/icons-material/Search";
@@ -122,9 +122,20 @@ function AllCars() {
   }, [handleScroll]);
 
   return (
-    <div>
+    <div className="mt-5">
       <div className="cars-list">
         <div className="container">
+          <div className="">
+            <div className="cars-header">
+              <h2 className="header-title">Popular Sales</h2>
+              <button
+                className="view-all-button"
+                onClick={() => Navigate("/cars")}
+              >
+                Explore All
+              </button>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-3">
               {!isMobile ? (

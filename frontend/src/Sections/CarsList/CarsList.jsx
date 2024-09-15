@@ -4,19 +4,11 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 import { useNavigate } from "react-router-dom";
 
-function CarsList({ title,cars }) {
+function CarsList({ title, cars }) {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="container mt-5">
-        <div className="cars-header">
-          <h2 className="header-title">{title}</h2>
-          <button className="view-all-button" onClick={() => navigate("/cars")}>
-            Explore All
-          </button>
-        </div>
-      </div>
       <div className="cars-list">
         {cars &&
           cars?.map((car) => (

@@ -11,6 +11,7 @@ import Header from "./new_ui/components/Header/Header";
 import AboutPage from "./Pages/AboutPage/AboutPage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import SavedCars from "./Screens/SavedCars/SavedCars";
+import BackToTop from "./Components/BackToTop/BackToTop";
 
 function App() {
   // Use the useLocation hook to get the current location
@@ -37,7 +38,7 @@ function App() {
           <Route path="/my-favourites" element={<SavedCars />} />
         </Routes>
       </main>
-
+      <BackToTop />
       <Footer />
     </div>
   );

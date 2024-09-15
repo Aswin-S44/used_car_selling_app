@@ -15,6 +15,7 @@ function Header() {
   const [cars, setCars] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [isSticky, setIsSticky] = useState(false);
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -48,18 +49,31 @@ function Header() {
     return () => clearTimeout(delayDebounceFn); // Cleanup the timeout if the user is still typing
   }, [searchQuery]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value); // Update search query
   };
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); 
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <>
       <SubHeader />
-      <header className="header p-3">
+      <header className={`header p-3 ${isSticky ? "sticky" : ""}`}>
         <div className="logo">
           <h2 className="logo-text" onClick={() => navigate("/")}>
             CarShop
@@ -113,7 +127,10 @@ function Header() {
         {/* User options and cart icon */}
         <div className="user-options">
           <a href="/my-favourites">
-            <FavoriteBorderIcon className="cart-icon" />
+            <FavoriteBorderIcon
+              className="cart-icon"
+              style={{ color: "#e34120" }}
+            />
           </a>
         </div>
 

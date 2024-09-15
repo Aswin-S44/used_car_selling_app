@@ -13,13 +13,16 @@ import Header from "../../new_ui/components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import CustomerReviews from "../../Sections/CustomerReviews/CustomerReviews";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function DetailsScreen() {
-  const [car, setCar] = useState({});
+  const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [mainImage, setMainImage] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const [cars, setCars] = useState([]);
 
@@ -28,7 +31,43 @@ function DetailsScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 6; // Number of items to display per page
+  const itemsPerPage = 6;
+
+  const addToFavourites = (car) => {
+    let favouriteCars =
+      JSON.parse(localStorage.getItem("favourite_cars")) || [];
+
+    const isFavorite = favouriteCars.some((item) => item._id === car._id);
+
+    if (isFavorite) {
+      favouriteCars = favouriteCars.filter((item) => item._id !== car._id);
+      localStorage.setItem("favourite_cars", JSON.stringify(favouriteCars));
+      setIsFavorite(false);
+      toast.error("Car removed from favourites!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    } else {
+      favouriteCars.push(car);
+      localStorage.setItem("favourite_cars", JSON.stringify(favouriteCars));
+      setIsFavorite(true);
+      toast.success("Car added to favourites!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    let favouriteCars =
+      JSON.parse(localStorage.getItem("favourite_cars")) || [];
+
+    if (car) {
+      const isFavorite = favouriteCars.some((item) => item._id === car._id);
+
+      setIsFavorite(isFavorite);
+    }
+  }, [car, addToFavourites]);
 
   const [filters, setFilters] = useState({
     car_name: null,
@@ -44,7 +83,7 @@ function DetailsScreen() {
     claim: null,
     sold: null,
     page: 1,
-    limit: itemsPerPage, // Number of items to display per page
+    limit: itemsPerPage,
     search: "",
   });
 
@@ -55,11 +94,11 @@ function DetailsScreen() {
         const res = await axios.get(`${BACKEND_URL}/admin/get-cars`, {
           params: filters,
         });
-        console.log("API Response:", res.data); // Debugging
+
         if (res && res.data) {
           setCars(res.data.data);
-          console.log("RES------------", res?.data);
-          setTotalPages(Math.ceil(res.data.data.length / itemsPerPage)); // Calculate total pages
+
+          setTotalPages(Math.ceil(res.data.data.length / itemsPerPage));
           const brands = [...new Set(res.data.data.map((car) => car.brand))];
           setBrands(brands);
           const years = [...new Set(res.data.data.map((car) => car.year))];
@@ -94,8 +133,8 @@ function DetailsScreen() {
 
   return (
     <>
-      {/* <Header /> */}
       <div className="container-fluid">
+        <ToastContainer />
         <div className="car-detail-wrapper">
           <div className="car-detail-card">
             {loading ? (
@@ -129,7 +168,10 @@ function DetailsScreen() {
                     <div className="col-md-6">
                       <div className="container">
                         <div style={{ float: "right" }}>
-                          <BookmarkBorderIcon />
+                          <BookmarkBorderIcon
+                            onClick={() => addToFavourites(car)}
+                            style={{ color: isFavorite && "orange" }}
+                          />
                         </div>
                         <div className="car-detail-info">
                           <h2 className="car-detail-title">{car?.car_name}</h2>
@@ -167,15 +209,17 @@ function DetailsScreen() {
                             <div className="col-md-6">
                               <div className="specs">
                                 <i className="fa fa-flag-checkered claim-icon"></i>
-                                Insuarance Claim:{" "}
-                                <span>{car.claim ? "Yes" : "No"}</span>
+                                Insuarance Claim:{"  "}
+                                <span>{car?.claim ? "Yes" : "No"}</span>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="specs">
                                 <i className="fa fa-money-bill-wave loan-icon"></i>
                                 Loan Available:{" "}
-                                <span>{car.loan_available ? "Yes" : "No"}</span>
+                                <span>
+                                  {car?.loan_available ? "Yes" : "No"}
+                                </span>
                               </div>
                             </div>
 
@@ -183,15 +227,15 @@ function DetailsScreen() {
                               <div className="specs">
                                 <i className="fa fa-exclamation-triangle accident-icon"></i>
                                 {"  "}Major Accident:{" "}
-                                <span>{car.major_accident ? "Yes" : "No"}</span>
+                                <span>
+                                  {car?.major_accident ? "Yes" : "No"}
+                                </span>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="specs">
                                 <i className="fa fa-paint-brush color-icon"></i>
-                                Color:{" "}
-                                {/* <span>{car.color ? car.color : "Unavailable"}</span> */}
-                                <span>Red</span>
+                                Color: <span>Red</span>
                               </div>
                             </div>
 
@@ -200,7 +244,7 @@ function DetailsScreen() {
                                 <i className="fa fa-gas-pump fuel-icon"></i>
                                 Fuel Type:{" "}
                                 <span>
-                                  {car.fuelType ? car.fuelType : "Unavailable"}
+                                  {car?.fuelType ? car.fuelType : "Unavailable"}
                                 </span>
                               </div>
                             </div>

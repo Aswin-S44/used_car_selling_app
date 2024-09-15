@@ -6,7 +6,7 @@
 }
 
 .header-title {
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: bold;
   color: #3e1f6d; 
 }
@@ -34,6 +34,8 @@
   gap: 20px;
   padding: 20px;
   width: 100%;
+  top: -15px;
+  position: relative;
 }
 
 .car-card {

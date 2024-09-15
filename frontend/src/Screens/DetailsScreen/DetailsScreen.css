@@ -43,6 +43,7 @@
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s, border 0.3s;
+  border: 1px solid #dc3545;
 }
 
 .car-detail-thumbnail.active {
@@ -57,7 +58,7 @@
 }
 
 .car-detail-title {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   color: #333;
 }
@@ -89,14 +90,78 @@
   color: #444;
   max-width: 90%;
 }
+
 .extra-details {
   width: 100%;
-  padding: 15px;
-  background-color: #ffffff;
-  border: 1px solid #d1b8b1; /* Slightly softer border color */
-  border-radius: 12px; /* Rounded corners for a softer look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px; /* Increase padding for more space */
+  background-color: #f9f9f9; /* Softer background color */
+  border: 1px solid #e0e0e0; /* Lighter border for a cleaner look */
+  border-radius: 15px; /* Slightly more rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+  margin-top: 20px; /* Add margin to separate from other sections */
 }
+
+.more-info-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3e1f6d;
+  border-bottom: 2px solid #e34120; /* Adds an underline for emphasis */
+  padding-bottom: 10px;
+}
+
+.specs {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px; /* Add spacing between each spec */
+  color: #444444; /* Slightly darker text */
+}
+
+.specs i {
+  margin-right: 10px; /* Space between icon and text */
+  color: #ff6f00; /* Icon color for contrast */
+}
+
+.claim-icon {
+  color: #1e88e5; /* Insurance icon color */
+}
+
+.loan-icon {
+  color: #4caf50; /* Loan icon color */
+}
+
+.accident-icon {
+  color: #d32f2f; /* Accident icon color */
+}
+
+.color-icon {
+  color: #ff9800; /* Color icon */
+}
+
+.fuel-icon {
+  color: #8e44ad; /* Fuel type icon color */
+}
+
+.specs span {
+  font-weight: bold; /* Highlight the yes/no text */
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .extra-details {
+    padding: 15px;
+  }
+
+  .more-info-text {
+    font-size: 20px;
+  }
+
+  .specs {
+    font-size: 14px;
+  }
+}
+
 
 .more-info-text {
   font-size: 22px;
