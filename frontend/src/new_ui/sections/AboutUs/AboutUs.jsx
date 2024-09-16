@@ -8,7 +8,7 @@ const AboutUs = () => {
       <div className="about-container">
         <h2 className="about-title">About Us</h2>
         <p className="about-description">
-          Welcome to <span className="brand-name">YourCarHub</span>, your
+          Welcome to <span className="brand-name">WheelzLoop</span>, your
           trusted partner in buying and selling used cars. We bring
           transparency, convenience, and trust to the used car market, helping
           you find the perfect car that fits your needs and budget.

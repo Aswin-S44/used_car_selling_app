@@ -1,51 +1,9 @@
 import React, { useState } from "react";
 import "./CustomerReviews.css";
+import Rating from "../../Components/Rating/Rating";
 
-const CustomerReviews = () => {
+const CustomerReviews = ({ reviews }) => {
   const [visibleReviews, setVisibleReviews] = useState(3);
-
-  const reviews = [
-    {
-      id: 1,
-      name: "John Doe",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      review:
-        "Amazing car! The driving experience is top-notch, and the interiors are super luxurious. Highly recommend!",
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      image: "https://randomuser.me/api/portraits/women/65.jpg",
-      review:
-        "Good car but had a few minor issues with the infotainment system. Overall, a good purchase.",
-      rating: 4,
-    },
-    {
-      id: 3,
-      name: "Alex Johnson",
-      image: "https://randomuser.me/api/portraits/men/45.jpg",
-      review:
-        "Smooth ride and great customer service. I love how the car handles on long trips.",
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: "Emily Davis",
-      image: "https://randomuser.me/api/portraits/women/12.jpg",
-      review:
-        "Great fuel economy and very comfortable for family trips. Highly satisfied with the purchase.",
-      rating: 4,
-    },
-    {
-      id: 5,
-      name: "Chris Lee",
-      image: "https://randomuser.me/api/portraits/men/78.jpg",
-      review:
-        "The car is good overall, but I experienced some delays in delivery. However, the performance is fantastic.",
-      rating: 3,
-    },
-  ];
 
   const handleLoadMore = () => {
     setVisibleReviews(reviews.length);
@@ -77,7 +35,9 @@ const CustomerReviews = () => {
             <div className="review-content">
               <h3 className="review-author">{review.name}</h3>
               <p className="review-text">{review.review}</p>
-              <div className="review-rating">{renderStars(review.rating)}</div>
+              <div className="review-rating">
+                <Rating rating={review?.rating} />
+              </div>
             </div>
           </li>
         ))}

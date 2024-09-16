@@ -75,9 +75,11 @@ function Header() {
       <SubHeader />
       <header className={`header p-3 ${isSticky ? "sticky" : ""}`}>
         <div className="logo">
-          <h2 className="logo-text" onClick={() => navigate("/")}>
-            CarShop
-          </h2>
+          <img
+            src="/my-logo.png"
+            className="my-logo"
+            onClick={() => navigate("/")}
+          />
         </div>
 
         {/* Full search bar for web view */}

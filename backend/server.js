@@ -9,6 +9,7 @@ const { Server } = require("socket.io"); // Importing Socket.IO
 const http = require("http");
 const Enquiry = require("./models/Enquiry/EnquiryModel");
 const { successResponse } = require("./constants/response");
+const sendEmail = require("./utils/helpers");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -49,9 +50,15 @@ io.on("connection", (socket) => {
 
 app.post("/enquiry", async (req, res) => {
   try {
+    let data = req.body;
     let result = await Enquiry.create(req.body);
 
     io.emit("new-enquiry", result);
+    await sendEmail(
+      "aswin.s.t.s04@gmail.com",
+      "Enquiry received",
+      `${data?.first_name} send you an enquiry . Contact : ${data?.phone_number}`
+    );
     res.send(successResponse);
   } catch (error) {
     return error;

@@ -1,38 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./TestimonialCarousel.css";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "John Doe",
-    image:
-      "https://headshots-inc.com/wp-content/uploads/2022/04/website-photos-2.jpg",
-    review:
-      "Great service! The process was smooth, and I found the perfect car.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkbwx2EclOGpeo3ApVEY6Gujm17rVcC8oGq0nRdVqj6QbB9iHjXNeZl4kPD7CqLpYYOo&usqp=CAU",
-    review: "Very satisfied with the purchase. Highly recommend this place.",
-    rating: 4,
-  },
-  {
-    id: 3,
-    name: "Michael Johnson",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzqQ_Q2xcop9NVikeaUow-L_acyqC8klLWEUbDdMCNUHy_m7aDiQqZXAdxIZe0aNOCsxo&usqp=CAU",
-    review:
-      "Excellent customer support and a wide range of cars to choose from.",
-    rating: 5,
-  },
-  // Add more testimonials here
-];
+import axios from "axios";
+import { BACKEND_URL } from "../../config/config";
+import Spinner from "../Spinner/Spinner";
+import Rating from "../Rating/Rating";
 
 const Testimonial = () => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      let res = await axios.get(
+        `${BACKEND_URL}/customer/get-reviews?dealerId=all`
+      );
+      if (res && res.status == 200) {
+        setLoading(false);
+        setTestimonials(res.data);
+      }
+    };
+    fetchData();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -47,25 +38,28 @@ const Testimonial = () => {
   return (
     <section className="testimonial-carousel mt-5">
       <h2 className="section-title">What Our Customers Say</h2>
-      <Slider {...settings}>
-        {testimonials.map((testimonial) => (
-          <div className="container">
-            <div className="testimonial-card p-5" key={testimonial.id}>
-              <div className="testimonial-image text-center">
-                <img src={testimonial.image} alt={testimonial.name} />
-              </div>
-              <div className="testimonial-content">
-                <p className="testimonial-review">"{testimonial.review}"</p>
-                <div className="testimonial-rating">
-                  {"★".repeat(testimonial.rating)}
-                  {"☆".repeat(5 - testimonial.rating)}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Slider {...settings}>
+          {testimonials.map((testimonial) => (
+            <div className="container">
+              <div className="testimonial-card p-5" key={testimonial.id}>
+                <div className="testimonial-image text-center">
+                  <img src={testimonial.image} alt={testimonial.name} />
                 </div>
-                <p className="testimonial-name">- {testimonial.name}</p>
+                <div className="testimonial-content">
+                  <p className="testimonial-review">"{testimonial.review}"</p>
+                  <div className="testimonial-rating">
+                    <Rating rating={testimonial?.rating} />
+                  </div>
+                  <p className="testimonial-name">- {testimonial.name}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      )}
     </section>
   );
 };

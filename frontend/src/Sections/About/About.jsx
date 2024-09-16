@@ -60,14 +60,13 @@ function About() {
           >
             <h2>About Us</h2>
             <p className="about-paragraph mt-4">
-              Your App Name is your ultimate destination for finding
-              high-quality, pre-owned vehicles with ease. We offer a diverse
-              selection of used cars, each meticulously inspected to ensure
-              reliability and transparency. Our user-friendly platform allows
-              you to explore, compare, and connect with trusted sellers, making
-              your car-buying journey smooth and enjoyable. Discover your next
-              vehicle with confidence at [Your App Name], where quality and
-              affordability meet.
+              WheelzLoop is your ultimate destination for finding high-quality,
+              pre-owned vehicles with ease. We offer a diverse selection of used
+              cars, each meticulously inspected to ensure reliability and
+              transparency. Our user-friendly platform allows you to explore,
+              compare, and connect with trusted sellers, making your car-buying
+              journey smooth and enjoyable. Discover your next vehicle with
+              confidence at WheelzLoop, where quality and affordability meet.
             </p>
 
             <div className="contact-info mt-4">

@@ -74,7 +74,7 @@ export default function UserModal({ open, setOpen, carId }) {
     };
 
     try {
-      let res = await axios.post(`${BACKEND_URL}/customer/enquiry`, dataObj);
+      let res = await axios.post(`http://localhost:5000/enquiry`, dataObj);
       if (res.status === 200) {
         setFirstName("");
         setPhoneNumber("");

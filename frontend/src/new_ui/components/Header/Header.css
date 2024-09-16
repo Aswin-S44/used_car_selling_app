@@ -12,6 +12,11 @@
   z-index: 999;
 }
 
+img.my-logo{
+  width: 200px;
+  height: auto;
+}
+
 /* Sticky header styles */
 .header.sticky {
   position: fixed;
@@ -121,9 +126,7 @@
   color: #fff;
 }
 
-.nav-links a:hover {
-  color: #fff; /* White color for nav items on hover */
-}
+
 
 /* User Options */
 .user-options {

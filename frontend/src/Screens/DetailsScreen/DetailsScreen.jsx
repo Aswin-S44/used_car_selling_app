@@ -23,6 +23,8 @@ function DetailsScreen() {
   const [mainImage, setMainImage] = useState(null);
   const [open, setOpen] = React.useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [dealerId, setDealerId] = useState("all");
+  const [reviews, setReviews] = useState([]);
 
   const [cars, setCars] = useState([]);
 
@@ -122,6 +124,15 @@ function DetailsScreen() {
         if (res && res.data) {
           setMainImage(res?.data?.data?.image);
           setCar(res.data.data);
+          let dealer_id = res?.data?.data?.dealer;
+          if (dealer_id) {
+            let resp = await axios.get(
+              `${BACKEND_URL}/customer/get-reviews?dealerId=${dealer_id}`
+            );
+            if (resp && resp.status == 200) {
+              setReviews(resp?.data);
+            }
+          }
         }
       } catch (error) {
         setLoading(false);
@@ -257,9 +268,13 @@ function DetailsScreen() {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="mt-4">
-                      <h6>Reviews (11)</h6>
+                      <h6>Reviews ({reviews?.length})</h6>
                       <div className="mt-3">
-                        <CustomerReviews />
+                        {reviews.length == 0 ? (
+                          <p>No reviews Available</p>
+                        ) : (
+                          <CustomerReviews reviews={reviews} />
+                        )}
                       </div>
                     </div>
                   </div>

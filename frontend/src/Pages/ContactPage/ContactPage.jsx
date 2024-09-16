@@ -1,8 +1,42 @@
-import React from "react";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"; // Import icons from react-icons
-import "./ContactPage.css";
+import React, { useState } from "react";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import "./ContactPage.css"; // Import your existing CSS
+import axios from "axios";
+import { BACKEND_URL } from "../../config/config";
 
 const ContactPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [loading, setLoading] = useState(false);
+  const submitForm = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    let contactData = {
+      name,
+      email,
+      subject,
+      message,
+    };
+    console.log("Contact data:", contactData);
+    await axios.post(`${BACKEND_URL}/customer/add-feedback`, contactData);
+    setLoading(false);
+    // Simulate form submission and show modal
+    setIsModalOpen(true);
+
+    // Optionally, reset form fields after submission
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="container">
       <div className="new-contact-page">
@@ -14,37 +48,49 @@ const ContactPage = () => {
         <div className="new-contact-content">
           <div className="new-contact-form">
             <h2>Get in Touch</h2>
-            <form>
+            <form onSubmit={submitForm}>
               <input
                 type="text"
                 id="name"
                 name="name"
                 placeholder="Name"
+                value={name}
                 required
+                onChange={(e) => setName(e.target.value)}
               />
               <input
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Email"
+                value={email}
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 placeholder="Subject"
+                value={subject}
                 required
+                onChange={(e) => setSubject(e.target.value)}
               />
               <textarea
                 id="message"
                 name="message"
                 placeholder="Message"
                 rows="5"
+                value={message}
                 required
+                onChange={(e) => setMessage(e.target.value)}
               ></textarea>
-              <button type="submit" className="new-submit-btn">
-                Send
+              <button
+                type="submit"
+                className="new-submit-btn"
+                disabled={loading}
+              >
+                {loading ? "Please wait...." : <>Send</>}
               </button>
             </form>
           </div>
@@ -85,6 +131,22 @@ const ContactPage = () => {
           ></iframe>
         </div>
       </div>
+
+      {/* Feedback Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Thank You!</h2>
+            <p>
+              Your feedback has been received. We appreciate you taking the time
+              to reach out to us!
+            </p>
+            <button className="close-modal-btn" onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
