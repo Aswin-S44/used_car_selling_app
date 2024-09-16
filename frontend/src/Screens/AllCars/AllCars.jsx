@@ -130,7 +130,7 @@ function AllCars() {
               <h2 className="header-title">Popular Sales</h2>
               <button
                 className="view-all-button"
-                onClick={() => Navigate("/cars")}
+                onClick={() => (window.location.href = "/used-cars")}
               >
                 Explore All
               </button>

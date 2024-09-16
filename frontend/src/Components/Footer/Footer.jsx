@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+import XIcon from "@mui/icons-material/X";
 import "./Footer.css"; // Ensure to include this CSS file
 
 const Footer = () => {
@@ -24,11 +24,9 @@ const Footer = () => {
               <a href="/home">Home</a>
             </li>
             <li>
-              <a href="/cars">Cars</a>
+              <a href="/used-cars">Explore Cars</a>
             </li>
-            <li>
-              <a href="/brands">Brands</a>
-            </li>
+
             <li>
               <a href="/about-us">About Us</a>
             </li>
@@ -39,9 +37,11 @@ const Footer = () => {
         </div>
         <div className="footer-contact">
           <h3>Contact Us</h3>
-          <p>Email: support@carshop.com</p>
-          <p>Phone: +123 456 7890</p>
-          <p>Address: 123 Car Street, Auto City, AC 12345</p>
+          <p>Email: wheelzloop@gmail.com</p>
+          <p>
+            <XIcon /> : https://x.com/WheelzLoop
+          </p>
+          {/* <p>Address: 123 Car Street, Auto City, AC 12345</p> */}
         </div>
         <div className="footer-newsletter">
           {/* <h3>Subscribe to Our Newsletter</h3>
