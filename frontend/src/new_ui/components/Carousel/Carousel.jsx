@@ -2,6 +2,10 @@ import React from "react";
 import "./Carousel.css";
 
 function Carousel() {
+  const goToExploreCars = async (e) => {
+    e.preventDefault();
+    window.location.href = "/used-cars";
+  };
   return (
     <div className="banner-div">
       <div
@@ -24,7 +28,9 @@ function Carousel() {
                 inspected and ready to hit the road. Quality and reliability
                 guaranteed.
               </p>
-              <button className="custom-button">Learn More</button>
+              <button className="custom-button" onClick={goToExploreCars}>
+                Explore More
+              </button>
             </div>
           </div>
           <div className="carousel-item">
@@ -40,7 +46,9 @@ function Carousel() {
                 Unlock unbeatable prices on top brands. Drive your dream car
                 without breaking the bank!
               </p>
-              <button className="custom-button">Learn More</button>
+              <button className="custom-button" onClick={goToExploreCars}>
+                Explore More
+              </button>
             </div>
           </div>
           <div className="carousel-item">
@@ -56,7 +64,9 @@ function Carousel() {
                 Buy with confidence and convenience. Our transparent process
                 makes buying a used car easier than ever
               </p>
-              <button className="custom-button">Learn More</button>
+              <button className="custom-button" onClick={goToExploreCars}>
+                Explore More
+              </button>
             </div>
           </div>
         </div>

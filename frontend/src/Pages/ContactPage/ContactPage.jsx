@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import "./ContactPage.css"; // Import your existing CSS
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
-
+import InstagramIcon from '@mui/icons-material/Instagram';
 const ContactPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -98,22 +98,22 @@ const ContactPage = () => {
           <div className="new-contact-info">
             <h2>Contact Information</h2>
             <div className="new-contact-card">
-              <p>
+              {/* <p>
                 <FaPhoneAlt className="new-contact-icon" />
                 {"  "} +1 234 567 890
-              </p>
+              </p> */}
             </div>
             <div className="new-contact-card">
               <p>
                 <FaEnvelope className="new-contact-icon" /> {"  "}{" "}
-                support@example.com
+                wheelzloop@gmail.com
               </p>
             </div>
             <div className="new-contact-card">
-              <p>
+              {/* <p>
                 <FaMapMarkerAlt className="new-contact-icon" />
                 {"  "} 1234 Car St, Auto City, AC 12345
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

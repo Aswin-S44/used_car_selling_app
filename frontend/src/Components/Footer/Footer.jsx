@@ -8,13 +8,14 @@ import {
 import TwitterIcon from "@mui/icons-material/Twitter";
 import XIcon from "@mui/icons-material/X";
 import "./Footer.css"; // Ensure to include this CSS file
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <h1>CarShop</h1>
+          <img src="/my-logo.png" className="footer-logo" />
           <p>Your trusted partner in buying and selling cars.</p>
         </div>
         <div className="footer-links">
@@ -31,15 +32,30 @@ const Footer = () => {
               <a href="/about-us">About Us</a>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <a href="/contact">Sell a Car</a>
             </li>
           </ul>
         </div>
         <div className="footer-contact">
           <h3>Contact Us</h3>
-          <p>Email: wheelzloop@gmail.com</p>
+          {/* <p>Email: wheelzloop@gmail.com</p> */}
           <p>
-            <XIcon /> : https://x.com/WheelzLoop
+            <a
+              href="mailto:wheelzloop@gmail.com"
+              style={{ textDecoration: "none !important", color: "#333" }}
+            >
+              Email: wheelzloop@gmail.com
+            </a>
+          </p>
+
+          <p>
+            <XIcon /> :{" "}
+            <a
+              href="https://x.com/WheelzLoop"
+              style={{ textDecoration: "none", color: "#333" }}
+            >
+              https://x.com/WheelzLoop
+            </a>
           </p>
           {/* <p>Address: 123 Car Street, Auto City, AC 12345</p> */}
         </div>
@@ -52,35 +68,37 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} CarShop. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Wheelzloop. All rights reserved.
+        </p>
         <div className="footer-socials">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/profile.php?id=61565890412918"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaFacebookF />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://www.youtube.com/@wheelzloop"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter />
+            <YouTubeIcon />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/wheelz_loop/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaInstagram />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://x.com/WheelzLoop"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <TwitterIcon />
+            <XIcon />
           </a>
         </div>
       </div>

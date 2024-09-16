@@ -41,15 +41,31 @@ img.my-logo{
 }
 
 /* Search Results Styles */
+/* Ensure the search results are visible in mobile view */
 .search-results {
-  position: absolute;
-  background-color: white;
-  max-height: 200px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
+  position: absolute; /* Make sure it's positioned correctly */
+  top: 100%;
+  left: 22%;
+  width: 30%;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  top: 62px;
-  width: 35%;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-search-bar .search-results {
+  position: relative;
+  top: 0px; /* Adjust for mobile view positioning */
+}
+
+/* Ensure mobile search bar styles are responsive */
+.mobile-search-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
 }
 
 .search-result-item {
@@ -171,6 +187,10 @@ img.my-logo{
   transform: translateX(0);
 }
 
+.mobile-nav-links {
+  width: 100%;
+}
+
 .mobile-nav-links a {
   display: block;
   padding: 10px;
@@ -209,4 +229,66 @@ img.my-logo{
   .user-options {
     display: none;
   }
+  img.my-logo {
+    width: 165px;
+    height: auto;
 }
+}
+/* Mobile view: Search and hamburger icon */
+.mobile-icons {
+  display: none;
+}
+
+.mobile-search-bar {
+  padding: 10px;
+  background-color: whitesmoke;
+}
+
+.mobile-search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e34120;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .mobile-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .mobile-search-bar {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .user-options {
+    display: none;
+  }
+  img.my-logo {
+    width: 165px;
+    height: auto;
+  }
+  .search-results {
+    position: absolute; /* Make sure it's positioned correctly */
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+

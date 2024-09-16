@@ -6,6 +6,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../../config/config";
 import SubHeader from "../SubHeader/SubHeader";
 import "./Header.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Header() {
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
+  const [isMobileSearchVisible, setIsMobileSearchVisible] = useState(false);
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -31,7 +32,6 @@ function Header() {
         });
         if (res && res.data) {
           setFilteredResults(res.data.data);
-          setHasMore(res.data.data.length > 0);
         }
       } catch (error) {
         console.error("Error fetching cars:", error);
@@ -66,6 +66,10 @@ function Header() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleMobileSearch = () => {
+    setIsMobileSearchVisible(!isMobileSearchVisible);
   };
 
   const getNavClass = (path) => {
@@ -115,7 +119,10 @@ function Header() {
           )}
         </div>
 
-        <nav className="nav-links">
+        <nav
+          className="nav-links"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <a href="/" className={getNavClass("/")}>
             Home
           </a>
@@ -126,7 +133,17 @@ function Header() {
             About Us
           </a>
           <a href="/contact" className={getNavClass("/contact")}>
-            Contact
+            <button
+              className="active"
+              style={{
+                padding: "8px",
+                border: "2px solid #e34120",
+                color: "#e34120",
+                borderRadius: "5px",
+              }}
+            >
+              Sell a Car
+            </button>
           </a>
         </nav>
 
@@ -140,13 +157,58 @@ function Header() {
         </div>
 
         <div className="mobile-icons">
-          <FaSearch className="mobile-search-icon" />
+          <FaSearch
+            className="mobile-search-icon"
+            onClick={toggleMobileSearch}
+          />
           <FaBars className="hamburger-icon" onClick={toggleSidebar} />
         </div>
       </header>
 
+      {isMobileSearchVisible && (
+        <div className="mobile-search-bar">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="mobile-search-input"
+          />
+          {searchQuery && filteredResults.length === 0 && !loading && (
+            <div className="search-results">
+              <div className="no-results">No results found</div>
+            </div>
+          )}
+          {searchQuery && filteredResults.length > 0 && (
+            <div className="search-results">
+              {filteredResults.map((car, index) => (
+                <a
+                  href={`/details/${car?._id}`}
+                  style={{ textDecoration: "none", color: "#222" }}
+                  key={index}
+                >
+                  <div className="search-result-item">
+                    {car.car_name} - {car.brand} ({car.year})
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-        <nav className="mobile-nav-links">
+        <div
+          style={{
+            float: "right",
+            top: "-20px",
+            left: "-10px",
+            position: "relative",
+          }}
+        >
+          <CloseIcon onClick={toggleSidebar} />
+        </div>
+        <nav className="mobile-nav-links mt-5">
           <a href="/" className={getNavClass("/")}>
             Home
           </a>

@@ -10,10 +10,15 @@
   }
   
   .sidebar {
-    width: 200px;
+    width: 50%;
     background-color: #e34120;
     padding: 20px;
     color: white;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+
   }
   
   .sidebar ul {
@@ -25,6 +30,7 @@
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    line-height: 10px;
   }
   
   .sidebar ul li:hover {
