@@ -47,6 +47,29 @@ function AllCars() {
   });
 
   useEffect(() => {
+    const fetchCarsBrand = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(`${BACKEND_URL}/admin/get-cars`, {
+          params: null,
+        });
+        if (res && res.data) {
+          const newCars = res?.data?.data;
+          if (newCars) {
+            setBrands([...new Set(res.data.data.map((car) => car.brand))]);
+            setYears([...new Set(res.data.data.map((car) => car.year))]);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching cars:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCarsBrand();
+  }, []);
+
+  useEffect(() => {
     const fetchCars = async () => {
       setLoading(true);
       try {
@@ -60,8 +83,8 @@ function AllCars() {
             const totalItems = res.data.totalCars;
             setTotalPages(Math.ceil(totalItems / itemsPerPage));
             setHasMore(newCars.length > 0 && cars.length < totalItems);
-            setBrands([...new Set(res.data.data.map((car) => car.brand))]);
-            setYears([...new Set(res.data.data.map((car) => car.year))]);
+            // setBrands([...new Set(res.data.data.map((car) => car.brand))]);
+            // setYears([...new Set(res.data.data.map((car) => car.year))]);
           }
         }
       } catch (error) {
@@ -145,25 +168,14 @@ function AllCars() {
                   onFilterChange={handleFilterChange}
                 />
               ) : (
-                <MobileFilterComponent onFilterChange={handleFilterChange} />
+                <MobileFilterComponent
+                  brands={brands}
+                  years={years}
+                  onFilterChange={handleFilterChange}
+                />
               )}
             </div>
             <div className="col-md-9">
-              {/* {currentPath === "/cars" && (
-                <div className="search-container">
-                  <input
-                    type="search"
-                    placeholder="Search by car name, brand, etc."
-                    className="search-input"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                  
-                  <button onClick={handleSearchSubmit}>
-                    <span style={{fontSize:'15px'}}>Search</span>
-                  </button>
-                </div>
-              )} */}
               {loading ? (
                 <Spinner />
               ) : cars.length > 0 ? (

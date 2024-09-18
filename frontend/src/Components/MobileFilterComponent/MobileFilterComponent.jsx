@@ -3,7 +3,7 @@ import { Drawer, Button, IconButton, Divider } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
 import "./MobileFilterComponent.css";
 
-function MobileFilterComponent({ onFilterChange }) {
+function MobileFilterComponent({ brands, years, onFilterChange }) {
   const [filters, setFilters] = useState({
     priceRange: "",
     brand: "",
@@ -101,10 +101,12 @@ function MobileFilterComponent({ onFilterChange }) {
               className="filter-select"
             >
               <option value="">All Brands</option>
-              <option value="Toyota">Toyota</option>
-              <option value="Ford">Ford</option>
-              <option value="Honda">Honda</option>
-              {/* Add more brands as needed */}
+              {brands?.length > 0 &&
+                brands.map((brand, index) => (
+                  <option key={index} value={brand}>
+                    {brand}
+                  </option>
+                ))}
             </select>
           </div>
 
@@ -118,10 +120,12 @@ function MobileFilterComponent({ onFilterChange }) {
               className="filter-select"
             >
               <option value="">All Years</option>
-              {/* Populate years dynamically or add as needed */}
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
-              <option value="2018">2018</option>
+              {years?.length > 0 &&
+                years.map((year, index) => (
+                  <option key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
             </select>
           </div>
 

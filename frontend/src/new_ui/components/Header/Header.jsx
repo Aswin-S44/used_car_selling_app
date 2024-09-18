@@ -121,7 +121,7 @@ function Header() {
 
         <nav
           className="nav-links"
-          style={{ display: "flex", alignItems: "center" }}
+          // style={{ display: "flex", alignItems: "center" }}
         >
           <a href="/" className={getNavClass("/")}>
             Home
@@ -191,7 +191,7 @@ function Header() {
                     {car.car_name} - {car.brand} ({car.year})
                   </div>
                 </a>
-              ))}
+              ))}x`x`
             </div>
           )}
         </div>
