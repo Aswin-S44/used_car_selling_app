@@ -10,6 +10,11 @@
 body {
   font-family: "Roboto", sans-serif;
   cursor: pointer;
+  background-color: whitesmoke;
+}
+
+a{
+  text-decoration: none;
 }
 
 .about-paragraph {

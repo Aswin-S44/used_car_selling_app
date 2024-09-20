@@ -1,12 +1,17 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import DetailsScreen from "./Screens/DetailsScreen/DetailsScreen";
 import AllCars from "./Screens/AllCars/AllCars";
 import Login from "./Admin/Auth/Login";
 import Dashboard from "./Admin/Dashboard/Dashboard";
+import LandingPage from "./Pages/LandingPage";
+import Header from "./new_ui/components/Header/Header";
+import AboutPage from "./Pages/AboutPage/AboutPage";
+import ContactPage from "./Pages/ContactPage/ContactPage";
+import SavedCars from "./Screens/SavedCars/SavedCars";
+import BackToTop from "./Components/BackToTop/BackToTop";
 
 function App() {
   // Use the useLocation hook to get the current location
@@ -18,18 +23,22 @@ function App() {
   return (
     <div>
       {/* Conditionally render Header only if the current route is not in the noHeaderRoutes array */}
-      {!noHeaderRoutes.includes(location.pathname) && <Header />}
-
+      {/* {!noHeaderRoutes.includes(location.pathname) && <Header />} */}
+      <Header />
       <main>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomeScreen />} />
           <Route path="/details/:id" element={<DetailsScreen />} />
-          <Route path="/cars" element={<AllCars />} />
+          <Route path="/used-cars" element={<AllCars />} />
           <Route path="/admin" element={<Login />} />
           <Route path="/dash" element={<Dashboard />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/my-favourites" element={<SavedCars />} />
         </Routes>
       </main>
-
+      <BackToTop />
       <Footer />
     </div>
   );

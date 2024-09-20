@@ -57,10 +57,10 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboard-container">
-      <AdminHeader />
-      <div className="dashboard-content">
-        <div className="sidebar">
+    <div >
+      {/* <AdminHeader /> */}
+      <div >
+        <div >
           <ul>
             <li
               className={activePage === "Home" ? "active" : ""}

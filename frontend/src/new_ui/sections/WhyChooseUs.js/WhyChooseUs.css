@@ -1,0 +1,113 @@
+.why-choose-us {
+  padding: 80px 20px;
+  background-color: #f3f6fb; /* Light background for a fresh look */
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: #e34120; /* Your website's main color */
+  display: block;
+  margin: 10px auto 0;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reasons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.reason-card {
+  background: linear-gradient(145deg, #ffffff, #f1f4f9); /* Soft gradient */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  flex: 1 1 260px;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reason-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(227, 65, 32, 0.1); /* Light background circle */
+  border-radius: 50%;
+}
+
+.reason-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.reason-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+}
+
+.icon-0 {
+  background-color: #ff6f61;
+}
+
+.icon-1 {
+  background-color: #4caf50;
+}
+
+.icon-2 {
+  background-color: #2196f3;
+}
+
+.icon-3 {
+  background-color: #ffeb3b;
+  color: #333;
+}
+
+.reason-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.reason-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.reason-card:hover .reason-icon {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}

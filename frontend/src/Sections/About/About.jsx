@@ -60,24 +60,26 @@ function About() {
           >
             <h2>About Us</h2>
             <p className="about-paragraph mt-4">
-              Your App Name is your ultimate destination for finding
-              high-quality, pre-owned vehicles with ease. We offer a diverse
-              selection of used cars, each meticulously inspected to ensure
-              reliability and transparency. Our user-friendly platform allows
-              you to explore, compare, and connect with trusted sellers, making
-              your car-buying journey smooth and enjoyable. Discover your next
-              vehicle with confidence at [Your App Name], where quality and
-              affordability meet.
+              WheelzLoop is your ultimate destination for finding high-quality,
+              pre-owned vehicles with ease. We offer a diverse selection of used
+              cars, each meticulously inspected to ensure reliability and
+              transparency. Our user-friendly platform allows you to explore,
+              compare, and connect with trusted sellers, making your car-buying
+              journey smooth and enjoyable. Discover your next vehicle with
+              confidence at WheelzLoop, where quality and affordability meet.
             </p>
 
             <div className="contact-info mt-4">
               <p>
                 Contact us:{" "}
-                <a href="mailto:info@yourapp.com">info@yourapp.com</a>
+                <a href="mailto:wheelzloop@gmail.com">wheelzloop@gmail.com</a>
               </p>
               <p>
-                Follow us on social media: <a href="#">Facebook</a> |{" "}
-                <a href="#">Twitter</a>
+                Follow us on social media:{" "}
+                <a href="https://www.facebook.com/profile.php?id=61565890412918">
+                  Facebook
+                </a>{" "}
+                | <a href="https://x.com/WheelzLoop">Twitter</a>
               </p>
             </div>
           </div>

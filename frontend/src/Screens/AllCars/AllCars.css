@@ -3,14 +3,26 @@
     justify-content: center;
     align-items: center;
     /* min-height: 100vh; */
-    top: 60px;
+    top: -15px;
     position: relative;
 }
 .search-container {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
-  
+.search-container button{
+  border: none;
+  outline: none;
+  background-color: #e34120;
+  color: #fff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 60px;
+  left: -2px;
+  position: relative;
+}
   .search-input {
     width: 100%;
     padding: 10px 40px 10px 12px;
@@ -31,3 +43,39 @@
     pointer-events: none; /* Ensures the icon doesn’t capture clicks */
   }
   
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    align-self: center;
+    margin: 0 10px;
+  }
+  
+ 
+
+  @media only screen and (max-width: 600px) {
+    .cars-list {
+      top: 0;
+      position: relative;
+    }
+    .car-card{
+      min-width: 350px
+    }
+  }

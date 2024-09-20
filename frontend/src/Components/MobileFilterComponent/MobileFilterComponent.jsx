@@ -3,9 +3,9 @@ import { Drawer, Button, IconButton, Divider } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
 import "./MobileFilterComponent.css";
 
-function MobileFilterComponent({ onFilterChange }) {
+function MobileFilterComponent({ brands, years, onFilterChange }) {
   const [filters, setFilters] = useState({
-    priceRange: [0, 100000],
+    priceRange: "",
     brand: "",
     year: "",
     fuelType: "",
@@ -13,21 +13,26 @@ function MobileFilterComponent({ onFilterChange }) {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const priceRanges = [
+    { label: "1 - 3 Lakh", value: "1-3" },
+    { label: "4 - 10 Lakh", value: "4-10" },
+    { label: "11 - 25 Lakh", value: "11-25" },
+    { label: "Above 25 Lakh", value: "25+" },
+  ];
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters, [name]: value };
-      return updatedFilters;
-    });
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
   };
 
-  const handlePriceRangeChange = (index, value) => {
-    const newPriceRange = [...filters.priceRange];
-    newPriceRange[index] = value;
-    setFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters, priceRange: newPriceRange };
-      return updatedFilters;
-    });
+  const handlePriceRangeChange = (range) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      priceRange: range,
+    }));
   };
 
   const toggleDrawer = (open) => () => {
@@ -37,6 +42,21 @@ function MobileFilterComponent({ onFilterChange }) {
   const applyFilters = () => {
     onFilterChange(filters);
     setIsDrawerOpen(false);
+  };
+
+  const handleResetFilters = () => {
+    setFilters({
+      priceRange: "",
+      brand: "",
+      year: "",
+      fuelType: "",
+    });
+    onFilterChange({
+      priceRange: "",
+      brand: "",
+      year: "",
+      fuelType: "",
+    });
   };
 
   return (
@@ -53,27 +73,21 @@ function MobileFilterComponent({ onFilterChange }) {
           <h2 className="filter-title">Apply Filters</h2>
           <Divider />
 
+          {/* Price Range Section with Chips */}
           <div className="filter-group">
-            <label>Price</label>
-            <input
-              type="range"
-              min="0"
-              max="100000"
-              value={filters.priceRange[0]}
-              onChange={(e) => handlePriceRangeChange(0, e.target.value)}
-              className="range-slider"
-            />
-            <input
-              type="range"
-              min="0"
-              max="100000"
-              value={filters.priceRange[1]}
-              onChange={(e) => handlePriceRangeChange(1, e.target.value)}
-              className="range-slider"
-            />
-            <div className="price-values">
-              <span>${filters.priceRange[0]}</span> -{" "}
-              <span>${filters.priceRange[1]}</span>
+            <label>Price Range</label>
+            <div className="price-chip-container">
+              {priceRanges.map((range) => (
+                <button
+                  key={range.value}
+                  className={`price-chip ${
+                    filters.priceRange === range.value ? "active" : ""
+                  }`}
+                  onClick={() => handlePriceRangeChange(range.value)}
+                >
+                  {range.label}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -87,10 +101,12 @@ function MobileFilterComponent({ onFilterChange }) {
               className="filter-select"
             >
               <option value="">All Brands</option>
-              <option value="Toyota">Toyota</option>
-              <option value="Ford">Ford</option>
-              <option value="Honda">Honda</option>
-              {/* Add more options */}
+              {brands?.length > 0 &&
+                brands.map((brand, index) => (
+                  <option key={index} value={brand}>
+                    {brand}
+                  </option>
+                ))}
             </select>
           </div>
 
@@ -104,10 +120,12 @@ function MobileFilterComponent({ onFilterChange }) {
               className="filter-select"
             >
               <option value="">All Years</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              {/* Add more options */}
+              {years?.length > 0 &&
+                years.map((year, index) => (
+                  <option key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
             </select>
           </div>
 
@@ -124,13 +142,17 @@ function MobileFilterComponent({ onFilterChange }) {
               <option value="Petrol">Petrol</option>
               <option value="Diesel">Diesel</option>
               <option value="Electric">Electric</option>
-              {/* Add more options */}
             </select>
           </div>
 
-          <button onClick={applyFilters} className="apply-button">
-            Apply Filters
-          </button>
+          <div className="drawer-actions">
+            <Button onClick={applyFilters} variant="contained" color="primary">
+              Apply Filters
+            </Button>
+            <Button onClick={handleResetFilters} variant="text">
+              Reset Filters
+            </Button>
+          </div>
         </div>
       </Drawer>
     </div>

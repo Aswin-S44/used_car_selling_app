@@ -1,0 +1,58 @@
+.about-section {
+    background-color: #ffffff;
+    padding: 4rem 2rem;
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-description {
+    font-size: 1.125rem;
+    color: #666666;
+    margin-bottom: 3rem;
+  }
+  
+  .brand-name {
+    font-weight: bold;
+    color: #e34120;
+  }
+  
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .feature-item {
+    flex: 1 1 300px;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .feature-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-description {
+    font-size: 1rem;
+    color: #666666;
+  }
+  

@@ -19,7 +19,7 @@ function Banner() {
         </p>
         <button
           onClick={() => {
-            navigation("/cars");
+            navigation("/used-cars");
           }}
           className="banner-button"
         >
